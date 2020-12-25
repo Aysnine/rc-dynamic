@@ -11,3 +11,4 @@
 ## Refer
 
 - https://www.storyblok.com/tp/react-dynamic-component-from-json
+- https://github.com/zaydek/esbuild-hot-reload

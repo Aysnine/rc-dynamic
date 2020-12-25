@@ -6,14 +6,23 @@
   "private": false,
   "scripts": {
     "serve": "node bin/dev.js",
-    "build": "node bin/build.js"
+    "build": "node bin/build.js",
+    "lint": "eslint . --fix"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.11.0",
+    "@typescript-eslint/parser": "^4.11.0",
     "chokidar": "^3.4.3",
     "cz-conventional-changelog": "3.3.0",
     "esbuild": "^0.8.26",
+    "eslint": "^7.16.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.21.5",
     "live-server": "^1.2.1",
     "typescript": "^4.1.3"
   },

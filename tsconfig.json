@@ -1,7 +1,13 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "jsx": "react-jsx",
     "esModuleInterop": true,
-    "jsx": "react-jsx"
+    "noEmit": true
   }
 }

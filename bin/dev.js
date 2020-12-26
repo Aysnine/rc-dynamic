@@ -2,6 +2,11 @@ const { build } = require('esbuild')
 const chokidar = require('chokidar')
 const liveServer = require('live-server')
 
+process.on('unhandledRejection', (error) => {
+  console.error('unhandledRejection:', error)
+  process.exit(1)
+})
+
 ;(async () => {
   // `esbuild` bundler for JavaScript / TypeScript.
   const builder = await build({

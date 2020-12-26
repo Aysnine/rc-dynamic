@@ -1,6 +1,11 @@
 const { build } = require('esbuild')
 const fs = require('fs')
 
+process.on('unhandledRejection', (error) => {
+  console.error('unhandledRejection:', error)
+  process.exit(1)
+})
+
 ;(async () => {
   // Copy public assets
   fs.rmdirSync('dist', { recursive: true })

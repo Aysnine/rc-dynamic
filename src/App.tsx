@@ -28,7 +28,7 @@ const App = () => {
     }]
   })
 
-  const handleLayoutChange = useCallback(async (result: DropResult, provided: ResponderProvided) => {
+  const handleDragEnd = useCallback(async (result: DropResult, provided: ResponderProvided) => {
     console.log(result)
 
     const { destination, draggableId, combine } = result
@@ -41,7 +41,7 @@ const App = () => {
 
   return (
     <div>
-      <DragDropContext onDragEnd={handleLayoutChange}>
+      <DragDropContext onDragEnd={handleDragEnd}>
         <DynamicTreeRootComponent tree={tree} />
       </DragDropContext>
     </div>

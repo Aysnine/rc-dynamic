@@ -1,33 +1,15 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 import { DragDropContext, DropResult, ResponderProvided } from 'react-beautiful-dnd'
-import { useTreeData } from '@react-stately/data'
 import { DynamicTreeNode } from './components'
 import DynamicTreeRootComponent from './components/core/DynamicTreeRootComponent'
+import { useTreeData } from './hooks/useTreeData'
+import { mockTree } from './mockData'
 
 const App = () => {
   const tree = useTreeData<DynamicTreeNode>({
     getKey: (i) => i.uid,
     getChildren: (i) => i.children || [],
-    initialItems: [
-      {
-        uid: '1',
-        component: 'container',
-        config: { foo: 1 },
-        children: [
-          { uid: '2', component: 'text', config: {} },
-          {
-            uid: '5',
-            component: 'container',
-            config: { foo: 1 },
-            children: [
-              { uid: '6', component: 'text', config: {} },
-              { uid: '7', component: 'text', config: { foo: 4 } },
-            ],
-          },
-          { uid: '3', component: 'text', config: { foo: 4 } },
-        ],
-      },
-    ],
+    initialItems: mockTree,
   })
 
   const handleDragEnd = useCallback(
@@ -48,10 +30,6 @@ const App = () => {
     },
     [tree]
   )
-
-  useEffect(() => {
-    console.log('tree changed')
-  }, [tree])
 
   return (
     <div>

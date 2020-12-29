@@ -1,7 +1,7 @@
 import { TreeNode } from '@react-stately/data'
 import { FC } from 'react'
 import { DynamicComponentMap } from '..'
-import { DynamicComponentBaseProps, DynamicTreeNode } from '../../types'
+import { DynamicComponentBaseProps, DynamicTreeNode } from '../'
 
 const DynamicTreeNodeComponent: FC<{ node: TreeNode<DynamicTreeNode>; index: number }> = ({ node, index }) => {
   const Comp: FC<DynamicComponentBaseProps> = DynamicComponentMap[node.value.component]

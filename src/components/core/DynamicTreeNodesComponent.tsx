@@ -1,6 +1,6 @@
 import { TreeNode } from '@react-stately/data'
 import { FC } from 'react'
-import { DynamicTreeNode } from '../../types'
+import { DynamicTreeNode } from '../'
 import DynamicTreeNodeComponent from './DynamicTreeNodeComponent'
 
 const DynamicTreeNodesComponent: FC<{ nodes: TreeNode<DynamicTreeNode>[] }> = ({ nodes }) => {

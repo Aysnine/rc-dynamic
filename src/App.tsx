@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react'
 import { DragDropContext, DropResult, ResponderProvided } from 'react-beautiful-dnd'
 import { useTreeData } from '@react-stately/data'
-import { DynamicTreeNode } from './types'
+import { DynamicTreeNode } from './components'
 import DynamicTreeRootComponent from './components/core/DynamicTreeRootComponent'
 
 const App = () => {

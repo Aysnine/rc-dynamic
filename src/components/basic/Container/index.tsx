@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
-import { DynamicComponentBaseProps } from '../../../types'
+import { DynamicComponentBaseProps } from '../../'
 import DynamicTreeNodeComponent from '../../core/DynamicTreeNodeComponent'
 
 const Container: FC<DynamicComponentBaseProps> = ({ node }) => {

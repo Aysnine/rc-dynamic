@@ -1,3 +1,4 @@
+const path = require('path')
 const { build } = require('esbuild')
 const chokidar = require('chokidar')
 const liveServer = require('live-server')
@@ -23,7 +24,7 @@ process.on('unhandledRejection', (error) => {
     // Bundles JavaScript to (see `entryPoints`).
     outdir: 'public',
     // React jsx runtime
-    inject: ['src/shim.js'],
+    inject: [path.join(__dirname, './_shim.js')],
   })
   // `chokidar` watcher source changes.
   chokidar

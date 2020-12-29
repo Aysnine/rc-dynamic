@@ -1,3 +1,4 @@
+const path = require('path')
 const { build } = require('esbuild')
 const fs = require('fs')
 
@@ -25,6 +26,6 @@ process.on('unhandledRejection', (error) => {
     // Bundles JavaScript to (see `entryPoints`).
     outdir: 'dist',
     // React jsx runtime
-    inject: ['src/shim.js'],
+    inject: [path.join(__dirname, './_shim.js')],
   })
 })()

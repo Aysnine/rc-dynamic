@@ -3,7 +3,7 @@ import Text from './basic/Text'
 
 export const DynamicComponentMap = {
   text: Text,
-  container: Container
+  container: Container,
 }
 
-export type DynamicComponentKey = keyof typeof DynamicComponentMap;
+export type DynamicComponentKey = keyof typeof DynamicComponentMap

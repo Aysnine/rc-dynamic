@@ -6,7 +6,6 @@ process.on('unhandledRejection', (error) => {
   console.error('unhandledRejection:', error)
   process.exit(1)
 })
-
 ;(async () => {
   // `esbuild` bundler for JavaScript / TypeScript.
   const builder = await build({
@@ -24,17 +23,15 @@ process.on('unhandledRejection', (error) => {
     // Bundles JavaScript to (see `entryPoints`).
     outdir: 'public',
     // React jsx runtime
-    inject: [
-      'src/shim.js'
-    ]
+    inject: ['src/shim.js'],
   })
   // `chokidar` watcher source changes.
   chokidar
-  // Watches TypeScript and React TypeScript.
+    // Watches TypeScript and React TypeScript.
     .watch('src/**/*.{ts,tsx}', {
-      interval: 0 // No delay
+      interval: 0, // No delay
     })
-  // Rebuilds esbuild (incrementally -- see `build.incremental`).
+    // Rebuilds esbuild (incrementally -- see `build.incremental`).
     .on('all', () => {
       builder.rebuild()
     })
@@ -45,6 +42,6 @@ process.on('unhandledRejection', (error) => {
     // Uses `PORT=...` or 8080 as a fallback.
     port: +process.env.PORT || 8080,
     // Uses `public` as the local server folder.
-    root: 'public'
+    root: 'public',
   })
 })()

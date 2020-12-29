@@ -5,7 +5,6 @@ process.on('unhandledRejection', (error) => {
   console.error('unhandledRejection:', error)
   process.exit(1)
 })
-
 ;(async () => {
   // Copy public assets
   fs.rmdirSync('dist', { recursive: true })
@@ -26,8 +25,6 @@ process.on('unhandledRejection', (error) => {
     // Bundles JavaScript to (see `entryPoints`).
     outdir: 'dist',
     // React jsx runtime
-    inject: [
-      'src/shim.js'
-    ]
+    inject: ['src/shim.js'],
   })
 })()

@@ -1,4 +1,5 @@
 const path = require('path')
+const fs = require('fs')
 const { build } = require('esbuild')
 const chokidar = require('chokidar')
 const liveServer = require('live-server')
@@ -8,6 +9,11 @@ process.on('unhandledRejection', (error) => {
   process.exit(1)
 })
 ;(async () => {
+  // Copy public assets
+  fs.rmdirSync('dist', { recursive: true })
+  fs.mkdirSync('dist')
+  fs.copyFileSync('public/index.html', 'dist/index.html') // TODO support multiple files
+
   // `esbuild` bundler for JavaScript / TypeScript.
   const builder = await build({
     // Bundles JavaScript.
@@ -22,7 +28,7 @@ process.on('unhandledRejection', (error) => {
     // Removes whitespace, etc. depending on `NODE_ENV=...`.
     minify: false,
     // Bundles JavaScript to (see `entryPoints`).
-    outdir: 'public',
+    outdir: 'dist',
     // React jsx runtime
     inject: [path.join(__dirname, './_shim.js')],
   })
@@ -43,6 +49,6 @@ process.on('unhandledRejection', (error) => {
     // Uses `PORT=...` or 8080 as a fallback.
     port: +process.env.PORT || 8080,
     // Uses `public` as the local server folder.
-    root: 'public',
+    root: 'dist',
   })
 })()

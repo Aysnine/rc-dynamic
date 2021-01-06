@@ -1,6 +1,9 @@
+import { FC } from 'react'
 import { Store } from 'react-sortablejs'
 import Container from './basic/Container'
+import ContainerConfigure from './basic/Container/components/Configure'
 import Text from './basic/Text'
+import TextConfigure from './basic/Text/components/Configure'
 
 export const DynamicComponentMap = {
   text: Text,
@@ -8,6 +11,11 @@ export const DynamicComponentMap = {
 }
 
 export type DynamicComponentKey = keyof typeof DynamicComponentMap
+
+export const DynamicComponentConfigureMap: Record<DynamicComponentKey, FC<DynamicComponentBaseProps>> = {
+  text: TextConfigure,
+  container: ContainerConfigure,
+}
 
 export interface DynamicTreeNode {
   id: string
@@ -25,6 +33,9 @@ export interface DynamicComponentBaseProps {
   indexPath: number[]
   setTree: React.Dispatch<React.SetStateAction<DynamicTreeNode[]>>
   setCurrentTree: (newState: DynamicTreeNode[], sortable: any, store: Store) => void
+  activeId: string
+  setActiveId: React.Dispatch<React.SetStateAction<string>>
+  setCurrentConfig: (newConfig: DynamicTreeNode['config']) => void
 }
 
 export const normalSortableOptions = {

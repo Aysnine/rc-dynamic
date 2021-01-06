@@ -14,6 +14,7 @@
 - [clauderic/dnd-kit](https://github.com/clauderic/dnd-kit)
 - [clauderic/react-sortable-hoc](https://github.com/clauderic/react-sortable-hoc)
 - [frontend-collective/react-sortable-tree](https://github.com/frontend-collective/react-sortable-tree)
+- [SortableJS/react-sortablejs](https://github.com/SortableJS/react-sortablejs)
 
 ## Refer
 

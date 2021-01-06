@@ -1,6 +1,6 @@
+import { Store } from 'react-sortablejs'
 import Container from './basic/Container'
 import Text from './basic/Text'
-import { TreeNode } from '@react-stately/data'
 
 export const DynamicComponentMap = {
   text: Text,
@@ -10,7 +10,7 @@ export const DynamicComponentMap = {
 export type DynamicComponentKey = keyof typeof DynamicComponentMap
 
 export interface DynamicTreeNode {
-  uid: string
+  id: string
   component: DynamicComponentKey
   // TODO
   config?: {
@@ -20,6 +20,18 @@ export interface DynamicTreeNode {
 }
 
 export interface DynamicComponentBaseProps {
-  node: TreeNode<DynamicTreeNode>
+  node: DynamicTreeNode
   index: number
+  indexPath: number[]
+  setTree: React.Dispatch<React.SetStateAction<DynamicTreeNode[]>>
+  setCurrentTree: (newState: DynamicTreeNode[], sortable: any, store: Store) => void
+}
+
+export const normalSortableOptions = {
+  animation: 150,
+  fallbackOnBody: true,
+  swapThreshold: 0.65,
+  ghostClass: 'ghost',
+  group: 'shared',
+  style: { overflow: 'auto' }, // TODO only edit mode for margin
 }

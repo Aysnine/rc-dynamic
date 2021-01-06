@@ -1,52 +1,26 @@
 import { FC } from 'react'
-import { Droppable, Draggable } from 'react-beautiful-dnd'
-import { DynamicComponentBaseProps } from '../../'
+import { DynamicComponentBaseProps, normalSortableOptions } from '../../'
 import DynamicTreeNodeComponent from '../../core/DynamicTreeNodeComponent'
+import { ReactSortable } from 'react-sortablejs'
 
-const Container: FC<DynamicComponentBaseProps> = ({ node }) => {
+const Container: FC<DynamicComponentBaseProps> = ({ node, setTree, setCurrentTree, indexPath }) => {
   return (
-    <div>
-      <div style={{ padding: '10px', backgroundColor: '#e3f2fd' }}>【{node.key}】container</div>
-
-      <Droppable droppableId={String(node.key)} isCombineEnabled>
-        {(provided) => {
+    <>
+      <div style={{ padding: '5px' }}>container</div>
+      <ReactSortable key={node.id} list={node.children} setList={setCurrentTree} {...normalSortableOptions}>
+        {node.children.map((childBlock, index) => {
           return (
-            <div
-              ref={provided.innerRef}
-              style={{ border: '5px solid #e3f2fd', borderTop: '0' }}
-              {...provided.droppableProps}
-            >
-              {node.children.map((i, index) => {
-                return (
-                  <Draggable key={i.key} draggableId={String(i.key)} index={index}>
-                    {(provided) => {
-                      return (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          style={{
-                            border: '10px solid transparent',
-                            ...provided.draggableProps.style,
-                          }}
-                        >
-                          <div style={{ padding: '10px', backgroundColor: '#64b5f6' }} {...provided.dragHandleProps}>
-                            【{i.key}】drag me
-                          </div>
-                          <div style={{ padding: '10px', border: '5px solid #64b5f6', borderTop: '0' }}>
-                            <DynamicTreeNodeComponent node={i} index={index} />
-                          </div>
-                        </div>
-                      )
-                    }}
-                  </Draggable>
-                )
-              })}
-              {provided.placeholder}
-            </div>
+            <DynamicTreeNodeComponent
+              key={childBlock.id}
+              node={childBlock}
+              index={index}
+              indexPath={[...indexPath, index]}
+              setTree={setTree}
+            />
           )
-        }}
-      </Droppable>
-    </div>
+        })}
+      </ReactSortable>
+    </>
   )
 }
 

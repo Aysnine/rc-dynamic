@@ -43,7 +43,8 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-sortablejs": "^6.0.0",
-    "react-use": "^15.3.4"
+    "react-use": "^15.3.4",
+    "sortablejs": "^1.10.2"
   },
   "config": {
     "commitizen": {

@@ -16,14 +16,14 @@ const DynamicTreeNodeComponent: FC<{
   const CompConfigure: FC<DynamicComponentBaseProps> = DynamicComponentConfigureMap[node.component]
 
   const setCurrentTree: (newState: DynamicTreeNode[], sortable: any, store: Store) => void = useCallback(
-    (currentList) => {
-      setTree((sourceList) => {
-        const tempList = [...sourceList]
+    (currentNodes) => {
+      setTree((sourceNodes) => {
+        const tempNodes = [...sourceNodes]
         const _nodeIndex = [...indexPath]
         const lastIndex = _nodeIndex.pop()
-        const lastArr = _nodeIndex.reduce((arr, i) => arr[i]['children'], tempList)
-        lastArr[lastIndex]['children'] = currentList
-        return tempList
+        const lastArr = _nodeIndex.reduce((arr, i) => arr[i]['children'], tempNodes)
+        lastArr[lastIndex]['children'] = currentNodes
+        return tempNodes
       })
     },
     [indexPath, setTree]

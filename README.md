@@ -1,6 +1,6 @@
 # rc-dynamic
 
-(low-code maybe) react component dynamic build and render.
+React component dynamic drag and drop build, config and render.
 
 ## Main integrations
 

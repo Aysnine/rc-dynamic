@@ -5,15 +5,15 @@ import DynamicTreeNodeComponent from '../../core/DynamicTreeNodeComponent'
 
 const Container: FC<DynamicComponentBaseProps> = ({ node }) => {
   return (
-    <div style={{ padding: '10px', backgroundColor: 'lightgray' }}>
-      <h1>【{node.key}】container</h1>
+    <div>
+      <div style={{ padding: '10px', backgroundColor: '#e3f2fd' }}>【{node.key}】container</div>
 
       <Droppable droppableId={String(node.key)} isCombineEnabled>
         {(provided) => {
           return (
             <div
               ref={provided.innerRef}
-              style={{ padding: '1px 0', backgroundColor: 'white' }}
+              style={{ border: '5px solid #e3f2fd', borderTop: '0' }}
               {...provided.droppableProps}
             >
               {node.children.map((i, index) => {
@@ -24,10 +24,17 @@ const Container: FC<DynamicComponentBaseProps> = ({ node }) => {
                         <div
                           ref={provided.innerRef}
                           {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={{ margin: '10px', backgroundColor: 'white', ...provided.draggableProps.style }}
+                          style={{
+                            border: '10px solid transparent',
+                            ...provided.draggableProps.style,
+                          }}
                         >
-                          <DynamicTreeNodeComponent node={i} index={index} />
+                          <div style={{ padding: '10px', backgroundColor: '#64b5f6' }} {...provided.dragHandleProps}>
+                            【{i.key}】drag me
+                          </div>
+                          <div style={{ padding: '10px', border: '5px solid #64b5f6', borderTop: '0' }}>
+                            <DynamicTreeNodeComponent node={i} index={index} />
+                          </div>
                         </div>
                       )
                     }}

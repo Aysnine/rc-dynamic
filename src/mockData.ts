@@ -15,19 +15,19 @@ export const mockTree: DynamicTreeNode[] = [
   {
     uid: '1',
     component: 'container',
-    config: { foo: 1 },
+    config: { value: 'hello' },
     children: [
       { uid: '2', component: 'text', config: {} },
       {
         uid: '5',
         component: 'container',
-        config: { foo: 1 },
+        config: { value: 'hello' },
         children: [
           { uid: '6', component: 'text', config: {} },
-          { uid: '7', component: 'text', config: { foo: 4 } },
+          { uid: '7', component: 'text', config: { value: '' } },
         ],
       },
-      { uid: '3', component: 'text', config: { foo: 4 } },
+      { uid: '3', component: 'text', config: { value: 'hello' } },
     ],
   },
 ]

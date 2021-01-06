@@ -1,8 +1,6 @@
 import { FC } from 'react'
 import { DynamicComponentBaseProps } from '../../'
 
-const Text: FC<DynamicComponentBaseProps> = ({ node }) => (
-  <div style={{ backgroundColor: 'lightblue', padding: '10px' }}>【{node.key}】element</div>
-)
+const Text: FC<DynamicComponentBaseProps> = ({ node }) => <div>{node.value.config.value || '[empty]'}</div>
 
 export default Text

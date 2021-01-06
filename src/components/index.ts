@@ -12,8 +12,9 @@ export type DynamicComponentKey = keyof typeof DynamicComponentMap
 export interface DynamicTreeNode {
   uid: string
   component: DynamicComponentKey
+  // TODO
   config?: {
-    foo?: number
+    value?: string
   }
   children?: DynamicTreeNode[]
 }

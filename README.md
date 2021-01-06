@@ -8,6 +8,25 @@ React component dynamic drag and drop build, config and render.
 - [React v17](https://reactjs.org/blog/2020/10/20/react-v17.html)
 - [TypeScript 4.1+](https://devblogs.microsoft.com/typescript/announcing-typescript-4-1/#jsx-factories)
 
+## Getting Started
+
+``` bash
+# install dependencies
+yarn install
+
+# development mode
+yarn serve
+
+# build production
+yarn build
+
+# check code styles
+yarn lint
+
+# check types
+yarn type
+```
+
 ## DnD & Sortable library
 
 - [atlassian/react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)

@@ -29,7 +29,7 @@ const DynamicTreeNodeComponent: FC<{
     <div
       style={{
         // TODO edit mode only
-        outline: '2px solid #e3f2fd',
+        outline: '2px solid #2196f3',
         cursor: 'move',
         margin: '10px',
         backgroundColor: 'white',

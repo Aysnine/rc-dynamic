@@ -16,7 +16,7 @@
     "@typescript-eslint/eslint-plugin": "^4.12.0",
     "@typescript-eslint/parser": "^4.12.0",
     "babel-eslint": "^10.1.0",
-    "chokidar": "^3.4.3",
+    "chokidar": "^3.5.0",
     "cz-conventional-changelog": "3.3.0",
     "esbuild": "^0.8.30",
     "eslint": "^7.17.0",

@@ -17,17 +17,14 @@ export const DynamicComponentConfigureMap: Record<DynamicComponentKey, FC<Dynami
   container: ContainerConfigure,
 }
 
-export interface DynamicTreeNode {
+export interface DynamicTreeNode<M = any> {
   id: string
   component: DynamicComponentKey
-  // TODO
-  config?: {
-    value?: string
-  }
+  meta?: M
   children?: DynamicTreeNode[]
 }
 
-export interface DynamicComponentBaseProps {
+export interface DynamicComponentBaseProps<M = any> {
   node: DynamicTreeNode
   index: number
   indexPath: number[]
@@ -35,7 +32,8 @@ export interface DynamicComponentBaseProps {
   setCurrentTree: (newState: DynamicTreeNode[], sortable: any, store: Store) => void
   activeId: string
   setActiveId: React.Dispatch<React.SetStateAction<string>>
-  setCurrentConfig: (newConfig: DynamicTreeNode['config']) => void
+  meta?: M
+  setMeta: (newMeta: M) => void
 }
 
 export const normalSortableOptions = {

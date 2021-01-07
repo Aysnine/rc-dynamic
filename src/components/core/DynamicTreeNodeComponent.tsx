@@ -13,7 +13,7 @@ const DynamicTreeNodeComponent: FC<{
   setActiveId: React.Dispatch<React.SetStateAction<string>>
 }> = ({ node, index, setTree, indexPath, activeId, setActiveId }) => {
   const Comp: FC<DynamicComponentBaseProps> = DynamicComponentMap[node.component]
-  const CompConfigure: FC<DynamicComponentBaseProps> = DynamicComponentConfigureMap[node.component]
+  const CompMeta: FC<DynamicComponentBaseProps> = DynamicComponentConfigureMap[node.component]
 
   const setCurrentTree: (newState: DynamicTreeNode[], sortable: any, store: Store) => void = useCallback(
     (currentNodes) => {
@@ -30,9 +30,9 @@ const DynamicTreeNodeComponent: FC<{
   )
 
   // TODO need better implementation
-  const setCurrentConfig = useCallback(
-    (newConfig: DynamicTreeNode['config']) => {
-      node.config = newConfig
+  const setMeta = useCallback(
+    (newMeta: DynamicTreeNode['meta']) => {
+      node.meta = newMeta
       setTree((source) => [...source])
     },
     [node, setTree]
@@ -46,7 +46,8 @@ const DynamicTreeNodeComponent: FC<{
     indexPath,
     activeId,
     setActiveId,
-    setCurrentConfig,
+    setMeta,
+    meta: node.meta,
   }
 
   const handleClick = useCallback(
@@ -81,7 +82,7 @@ const DynamicTreeNodeComponent: FC<{
             }}
           >
             <p>ID: {node.id}</p>
-            <CompConfigure key={node.id} {...compProps} />
+            <CompMeta key={node.id} {...compProps} />
           </div>,
           document.body // TODO use custom dom ref
         )}

@@ -1,17 +1,15 @@
 import { FC, useCallback } from 'react'
 import { DynamicComponentBaseProps } from 'src/components'
 
-const TextConfigure: FC<DynamicComponentBaseProps> = ({ node, setCurrentConfig }) => {
-  const { config } = node
-
+const TextConfigure: FC<DynamicComponentBaseProps> = ({ meta, setMeta }) => {
   const handleAppendX = useCallback(() => {
-    setCurrentConfig({ ...config, value: (config.value ?? '') + 'x' })
-  }, [config, setCurrentConfig])
+    setMeta({ ...meta, value: (meta.value ?? '') + 'x' })
+  }, [meta, setMeta])
 
   return (
     <div>
       <p>text configuration here</p>
-      <pre>{JSON.stringify(config)}</pre>
+      <pre>{JSON.stringify(meta)}</pre>
       <button onClick={handleAppendX}>append x</button>
     </div>
   )

@@ -1,12 +1,11 @@
 import { FC } from 'react'
 import { DynamicComponentBaseProps } from 'src/components'
 
-const ContainerConfigure: FC<DynamicComponentBaseProps> = ({ node }) => {
-  const { config } = node
+const ContainerConfigure: FC<DynamicComponentBaseProps> = ({ meta }) => {
   return (
     <div>
       <p>container configuration here</p>
-      <pre>{JSON.stringify(config)}</pre>
+      <pre>{JSON.stringify(meta)}</pre>
     </div>
   )
 }

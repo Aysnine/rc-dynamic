@@ -3,7 +3,14 @@ import { DynamicComponentBaseProps, normalSortableOptions } from '../../'
 import DynamicTreeNodeComponent from '../../core/DynamicTreeNodeComponent'
 import { ReactSortable } from 'react-sortablejs'
 
-const Container: FC<DynamicComponentBaseProps> = ({ node, setTree, setCurrentTree, indexPath, ...restProps }) => {
+const Container: FC<DynamicComponentBaseProps> = ({
+  node,
+  setTree,
+  setCurrentTree,
+  indexPath,
+  activeId,
+  setActiveId,
+}) => {
   return (
     <>
       <div style={{ padding: '5px' }}>container</div>
@@ -15,7 +22,8 @@ const Container: FC<DynamicComponentBaseProps> = ({ node, setTree, setCurrentTre
             index={index}
             indexPath={[...indexPath, index]}
             setTree={setTree}
-            {...restProps}
+            activeId={activeId}
+            setActiveId={setActiveId}
           />
         ))}
       </ReactSortable>

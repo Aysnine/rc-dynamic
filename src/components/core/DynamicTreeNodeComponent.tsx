@@ -60,11 +60,14 @@ const DynamicTreeNodeComponent: FC<{
 
   const active = activeId === node.id
 
+  // TODO use custom dom ref
+  const sidePanelElement = document.getElementById('side-panel')
+
   return (
     <div
       style={{
         // TODO edit mode only
-        outline: active ? '1px solid red' : '1px solid #2196f3',
+        outline: active ? '2px solid #ffc107' : '1px solid #2196f3',
         cursor: 'move',
         margin: '10px',
         backgroundColor: 'white',
@@ -73,18 +76,17 @@ const DynamicTreeNodeComponent: FC<{
     >
       <Comp key={node.id} {...compProps} />
       {active &&
+        sidePanelElement &&
         createPortal(
-          <div
-            style={{
-              outline: '1px solid green',
-              padding: '5px',
-              margin: '10px',
-            }}
-          >
-            <p>ID: {node.id}</p>
+          <div>
+            <ul>
+              <li>ID: {node.id}</li>
+              <li>Component: {node.component}</li>
+            </ul>
+            <hr />
             <CompMeta key={node.id} {...compProps} />
           </div>,
-          document.body // TODO use custom dom ref
+          sidePanelElement
         )}
     </div>
   )

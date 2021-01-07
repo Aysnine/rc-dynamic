@@ -1,16 +1,5 @@
 import { DynamicTreeNode } from './components'
 
-export const simpleMockTree: DynamicTreeNode[] = [
-  {
-    id: 'c',
-    component: 'container',
-    children: [
-      { id: 't1', component: 'text' },
-      { id: 't2', component: 'text' },
-    ],
-  },
-]
-
 export const mockTree: DynamicTreeNode[] = [
   {
     id: '1',

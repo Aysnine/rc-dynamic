@@ -35,7 +35,7 @@ process.on('unhandledRejection', (error) => {
   // `chokidar` watcher source changes.
   chokidar
     // Watches TypeScript and React TypeScript.
-    .watch('src/**/*.{ts,tsx}', {
+    .watch('src/**/*.{ts,tsx,css}', {
       interval: 0, // No delay
     })
     // Rebuilds esbuild (incrementally -- see `build.incremental`).

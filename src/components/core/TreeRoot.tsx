@@ -11,7 +11,7 @@ const DynamicTreeRootComponent: FC<{
   panel: MutableRefObject<HTMLDivElement>
 }> = ({ tree, setTree, activeId, setActiveId, panel }) => {
   return (
-    <ReactSortable list={tree} setList={setTree} {...normalSortableOptions} style={{ overflow: 'auto' }}>
+    <ReactSortable list={tree} setList={setTree} {...normalSortableOptions}>
       {tree.map((node, index) => (
         <DynamicTreeNodeComponent
           key={node.id}

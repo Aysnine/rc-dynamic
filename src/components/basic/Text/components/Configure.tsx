@@ -9,8 +9,6 @@ const TextConfigure: FC<BaseProps<TextMeta>> = ({ meta, setMeta }) => {
 
   return (
     <div>
-      <p>text configuration here</p>
-      <pre>{JSON.stringify(meta)}</pre>
       <button onClick={handleAppendX}>append x</button>
     </div>
   )

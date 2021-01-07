@@ -1,0 +1,52 @@
+.workspace {
+  display: flex;
+  flexDirection: row;
+  justify-content: stretch;
+  min-height: calc(100vh - 20px);
+}
+
+.material-panel {
+  width: 200px;
+  outline: 2px solid #2196f3;
+  padding: 5px;
+  margin: 10px;
+}
+
+.view-container {
+  flex: 1;
+  padding: 50px 20px;
+  margin: 10px;
+}
+.view-container .tree-node-wrapper {
+  outline: 1px solid #2196f3;
+  cursor: move;
+  margin: 10px;
+  backgroundColor: white;
+}
+.view-container .tree-node-wrapper.active {
+  outline: 2px solid #7e57c2;
+}
+.view-container .ghost {
+  background-color: #e6f4fa;
+}
+.view-container .active.ghost {
+  background-color: #e6e6fa;
+}
+
+.active-panel {
+  width: 300px;
+  outline: 2px solid #7e57c2;
+  padding: 5px;
+  margin: 10px;
+}
+.active-panel-placeholder {
+  width: 300px;
+  padding: 5px;
+  margin: 10px;
+}
+.active-panel pre,
+.active-panel .config-wrapper {
+  padding: 10px;
+  background-color: lavender;
+  overflow: auto;
+}

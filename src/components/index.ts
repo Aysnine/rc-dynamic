@@ -10,21 +10,21 @@ export const DynamicComponentMap = {
   container: Container,
 }
 
-export type DynamicComponentKey = keyof typeof DynamicComponentMap
+export type ComponentKey = keyof typeof DynamicComponentMap
 
-export const DynamicComponentConfigureMap: Record<DynamicComponentKey, FC<DynamicComponentBaseProps>> = {
+export const ConfigureMap: Record<ComponentKey, FC<BaseProps>> = {
   text: TextConfigure,
   container: ContainerConfigure,
 }
 
 export interface DynamicTreeNode<M = any> {
   id: string
-  component: DynamicComponentKey
+  component: ComponentKey
   meta?: M
   children?: DynamicTreeNode[]
 }
 
-export interface DynamicComponentBaseProps<M = any> {
+export interface BaseProps<M = any> {
   node: DynamicTreeNode
   index: number
   indexPath: number[]

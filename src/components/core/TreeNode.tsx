@@ -1,8 +1,9 @@
 import { FC, MutableRefObject, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import { Store } from 'react-sortablejs'
-import { DynamicComponentConfigureMap, DynamicComponentMap } from '..'
-import { DynamicComponentBaseProps, DynamicTreeNode } from '../'
+import { useUpdate } from 'react-use'
+import { ConfigureMap, DynamicComponentMap } from '..'
+import { BaseProps, DynamicTreeNode } from '..'
 
 const DynamicTreeNodeComponent: FC<{
   node: DynamicTreeNode
@@ -13,8 +14,8 @@ const DynamicTreeNodeComponent: FC<{
   setActiveId: React.Dispatch<React.SetStateAction<string>>
   panel: MutableRefObject<HTMLDivElement>
 }> = ({ node, index, setTree, indexPath, activeId, setActiveId, panel }) => {
-  const Comp: FC<DynamicComponentBaseProps> = DynamicComponentMap[node.component]
-  const CompMeta: FC<DynamicComponentBaseProps> = DynamicComponentConfigureMap[node.component]
+  const Comp: FC<BaseProps> = DynamicComponentMap[node.component]
+  const CompMeta: FC<BaseProps> = ConfigureMap[node.component]
 
   const setCurrentTree: (newState: DynamicTreeNode[], sortable: any, store: Store) => void = useCallback(
     (currentNodes) => {
@@ -30,16 +31,16 @@ const DynamicTreeNodeComponent: FC<{
     [indexPath, setTree]
   )
 
-  // TODO need better implementation
+  const update = useUpdate()
   const setMeta = useCallback(
     (newMeta: DynamicTreeNode['meta']) => {
       node.meta = newMeta
-      setTree((source) => [...source])
+      update()
     },
-    [node, setTree]
+    [node, update]
   )
 
-  const compProps: DynamicComponentBaseProps = {
+  const compProps: BaseProps = {
     node,
     index,
     setTree,

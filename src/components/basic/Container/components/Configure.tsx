@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import { DynamicComponentBaseProps } from 'src/components'
+import { BaseProps } from 'src/components'
 
-const ContainerConfigure: FC<DynamicComponentBaseProps> = ({ meta }) => {
+const ContainerConfigure: FC<BaseProps> = ({ meta }) => {
   return (
     <div>
       <p>container configuration here</p>

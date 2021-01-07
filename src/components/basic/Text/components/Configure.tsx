@@ -1,7 +1,7 @@
 import { FC, useCallback } from 'react'
-import { DynamicComponentBaseProps } from 'src/components'
+import { BaseProps } from 'src/components'
 
-const TextConfigure: FC<DynamicComponentBaseProps> = ({ meta, setMeta }) => {
+const TextConfigure: FC<BaseProps> = ({ meta, setMeta }) => {
   const handleAppendX = useCallback(() => {
     setMeta({ ...meta, value: (meta.value ?? '') + 'x' })
   }, [meta, setMeta])

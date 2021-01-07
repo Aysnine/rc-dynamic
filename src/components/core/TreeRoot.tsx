@@ -1,6 +1,6 @@
 import { FC, MutableRefObject } from 'react'
-import { DynamicTreeNode, normalSortableOptions } from '../'
-import DynamicTreeNodeComponent from './DynamicTreeNodeComponent'
+import { DynamicTreeNode, normalSortableOptions } from '..'
+import DynamicTreeNodeComponent from './TreeNode'
 import { ReactSortable } from 'react-sortablejs'
 
 const DynamicTreeRootComponent: FC<{

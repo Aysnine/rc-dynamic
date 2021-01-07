@@ -1,23 +1,15 @@
 import { FC } from 'react'
-import { DynamicComponentBaseProps, normalSortableOptions } from '../../'
-import DynamicTreeNodeComponent from '../../core/DynamicTreeNodeComponent'
+import { BaseProps, normalSortableOptions } from '../../'
+import TreeNode from '../../core/TreeNode'
 import { ReactSortable } from 'react-sortablejs'
 
-const Container: FC<DynamicComponentBaseProps> = ({
-  node,
-  setTree,
-  setCurrentTree,
-  indexPath,
-  activeId,
-  setActiveId,
-  panel,
-}) => {
+const Container: FC<BaseProps> = ({ node, setTree, setCurrentTree, indexPath, activeId, setActiveId, panel }) => {
   return (
     <>
       <div style={{ padding: '5px' }}>container</div>
       <ReactSortable key={node.id} list={node.children} setList={setCurrentTree} {...normalSortableOptions}>
         {node.children.map((childNode, index) => (
-          <DynamicTreeNodeComponent
+          <TreeNode
             key={childNode.id}
             node={childNode}
             index={index}

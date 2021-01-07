@@ -38,7 +38,7 @@ yarn type
 
 ## Refer
 
-- 🌟 https://codesandbox.io/s/react-sortable-js-nested-forked-6i15j
+- 🌟 https://codesandbox.io/s/react-sortable-js-nested-tu8nn
 - https://www.storyblok.com/tp/react-dynamic-component-from-json
 - https://github.com/zaydek/esbuild-hot-reload
 - https://techmusings.dev/

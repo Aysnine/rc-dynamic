@@ -12,9 +12,7 @@ const App = () => {
   const panel = useRef<HTMLDivElement>(null)
   const update = useUpdate()
   useEffect(() => {
-    if (!panel.current) {
-      update()
-    }
+    update()
   }, [activeId, update])
 
   return (

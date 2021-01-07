@@ -10,6 +10,7 @@ const Container: FC<DynamicComponentBaseProps> = ({
   indexPath,
   activeId,
   setActiveId,
+  panel,
 }) => {
   return (
     <>
@@ -24,6 +25,7 @@ const Container: FC<DynamicComponentBaseProps> = ({
             setTree={setTree}
             activeId={activeId}
             setActiveId={setActiveId}
+            panel={panel}
           />
         ))}
       </ReactSortable>

@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react'
+import { FC, MutableRefObject, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import { Store } from 'react-sortablejs'
 import { DynamicComponentConfigureMap, DynamicComponentMap } from '..'
@@ -11,7 +11,8 @@ const DynamicTreeNodeComponent: FC<{
   setTree: React.Dispatch<React.SetStateAction<DynamicTreeNode[]>>
   activeId: string
   setActiveId: React.Dispatch<React.SetStateAction<string>>
-}> = ({ node, index, setTree, indexPath, activeId, setActiveId }) => {
+  panel: MutableRefObject<HTMLDivElement>
+}> = ({ node, index, setTree, indexPath, activeId, setActiveId, panel }) => {
   const Comp: FC<DynamicComponentBaseProps> = DynamicComponentMap[node.component]
   const CompMeta: FC<DynamicComponentBaseProps> = DynamicComponentConfigureMap[node.component]
 
@@ -48,6 +49,7 @@ const DynamicTreeNodeComponent: FC<{
     setActiveId,
     setMeta,
     meta: node.meta,
+    panel,
   }
 
   const handleClick = useCallback(
@@ -59,9 +61,6 @@ const DynamicTreeNodeComponent: FC<{
   )
 
   const active = activeId === node.id
-
-  // TODO use custom dom ref
-  const sidePanelElement = document.getElementById('side-panel')
 
   return (
     <div
@@ -76,7 +75,7 @@ const DynamicTreeNodeComponent: FC<{
     >
       <Comp key={node.id} {...compProps} />
       {active &&
-        sidePanelElement &&
+        !!panel.current &&
         createPortal(
           <div>
             <ul>
@@ -86,7 +85,7 @@ const DynamicTreeNodeComponent: FC<{
             <hr />
             <CompMeta key={node.id} {...compProps} />
           </div>,
-          sidePanelElement
+          panel.current
         )}
     </div>
   )

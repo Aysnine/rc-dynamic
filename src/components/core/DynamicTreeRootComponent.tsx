@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, MutableRefObject } from 'react'
 import { DynamicTreeNode, normalSortableOptions } from '../'
 import DynamicTreeNodeComponent from './DynamicTreeNodeComponent'
 import { ReactSortable } from 'react-sortablejs'
@@ -8,7 +8,8 @@ const DynamicTreeRootComponent: FC<{
   setTree: React.Dispatch<React.SetStateAction<DynamicTreeNode[]>>
   activeId: string
   setActiveId: React.Dispatch<React.SetStateAction<string>>
-}> = ({ tree, setTree, activeId, setActiveId }) => {
+  panel: MutableRefObject<HTMLDivElement>
+}> = ({ tree, setTree, activeId, setActiveId, panel }) => {
   return (
     <ReactSortable list={tree} setList={setTree} {...normalSortableOptions} style={{ overflow: 'auto' }}>
       {tree.map((node, index) => (
@@ -20,6 +21,7 @@ const DynamicTreeRootComponent: FC<{
           setTree={setTree}
           activeId={activeId}
           setActiveId={setActiveId}
+          panel={panel}
         />
       ))}
     </ReactSortable>

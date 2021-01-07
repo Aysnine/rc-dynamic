@@ -32,6 +32,18 @@
 .view-container .active.ghost {
   background-color: #e6e6fa;
 }
+.view-container .container {
+  display: flex;
+}
+.view-container .container.horizontal {
+  flex-direction: row;
+}
+.view-container .container.horizontal > div {
+  flex: 1
+}
+.view-container .container.vertical {
+  flex-direction: column;
+}
 
 .active-panel {
   width: 300px;

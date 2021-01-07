@@ -15,11 +15,20 @@ const Container: FC<BaseProps<ContainerMeta>> = ({
   activeId,
   setActiveId,
   panel,
+  meta,
 }) => {
+  const direction = meta?.direction ?? 'vertical'
+
   return (
     <>
       <div style={{ padding: '5px' }}>container</div>
-      <ReactSortable key={node.id} list={node.children} setList={setCurrentTree} {...normalSortableOptions}>
+      <ReactSortable
+        key={node.id}
+        list={node.children}
+        setList={setCurrentTree}
+        {...normalSortableOptions}
+        className={`container ${direction}`}
+      >
         {node.children.map((childNode, index) => (
           <TreeNode
             key={childNode.id}

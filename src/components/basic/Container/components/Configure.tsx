@@ -1,7 +1,8 @@
 import { FC } from 'react'
-import { BaseProps } from 'src/components'
+import { BaseProps } from '../../..'
+import { ContainerMeta } from '..'
 
-const ContainerConfigure: FC<BaseProps> = ({ meta }) => {
+const ContainerConfigure: FC<BaseProps<ContainerMeta>> = ({ meta }) => {
   return (
     <div>
       <p>container configuration here</p>

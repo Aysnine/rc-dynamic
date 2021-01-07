@@ -1,9 +1,21 @@
 import { FC } from 'react'
-import { BaseProps, normalSortableOptions } from '../../'
-import TreeNode from '../../core/TreeNode'
 import { ReactSortable } from 'react-sortablejs'
+import TreeNode from '../../core/TreeNode'
+import { BaseProps, normalSortableOptions } from '../../'
 
-const Container: FC<BaseProps> = ({ node, setTree, setCurrentTree, indexPath, activeId, setActiveId, panel }) => {
+export interface ContainerMeta {
+  direction?: 'vertical' | 'horizontal'
+}
+
+const Container: FC<BaseProps<ContainerMeta>> = ({
+  node,
+  setTree,
+  setCurrentTree,
+  indexPath,
+  activeId,
+  setActiveId,
+  panel,
+}) => {
   return (
     <>
       <div style={{ padding: '5px' }}>container</div>

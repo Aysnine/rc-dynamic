@@ -1,6 +1,10 @@
 import { FC } from 'react'
 import { BaseProps } from '../../'
 
-const Text: FC<BaseProps> = ({ node }) => <div style={{ padding: '5px' }}>{node.meta.value || '[empty]'}</div>
+export interface TextMeta {
+  value?: string
+}
+
+const Text: FC<BaseProps<TextMeta>> = ({ meta }) => <div style={{ padding: '5px' }}>{meta?.value || '[empty]'}</div>
 
 export default Text

@@ -1,9 +1,10 @@
 import { FC, useCallback } from 'react'
-import { BaseProps } from 'src/components'
+import { BaseProps } from '../../..'
+import { TextMeta } from '..'
 
-const TextConfigure: FC<BaseProps> = ({ meta, setMeta }) => {
+const TextConfigure: FC<BaseProps<TextMeta>> = ({ meta, setMeta }) => {
   const handleAppendX = useCallback(() => {
-    setMeta({ ...meta, value: (meta.value ?? '') + 'x' })
+    setMeta({ ...(meta ?? {}), value: (meta?.value ?? '') + 'x' })
   }, [meta, setMeta])
 
   return (

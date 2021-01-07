@@ -7,6 +7,10 @@ const ConfigureWrapper: FC<BaseProps> = ({ node, setActiveId, panel, children })
     setActiveId('')
   }, [setActiveId])
 
+  const handleDelete = useCallback(() => {
+    // TODO
+  }, [])
+
   if (!panel.current) return null
   return createPortal(
     <div
@@ -18,7 +22,7 @@ const ConfigureWrapper: FC<BaseProps> = ({ node, setActiveId, panel, children })
       <div>
         <button onClick={handleCancelActive}>X</button>
         &nbsp; | &nbsp;
-        <button onClick={handleCancelActive}>Delete</button>
+        <button onClick={handleDelete}>Delete（TODO）</button>
       </div>
       <p>
         <b>

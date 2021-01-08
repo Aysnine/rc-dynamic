@@ -21,7 +21,7 @@ const Container: FC<BaseProps<ContainerMeta>> = ({
 
   return (
     <>
-      <div style={{ padding: '5px' }}>container</div>
+      <div style={{ padding: '5px', paddingBottom: 0 }}>container</div>
       <ReactSortable
         key={node.id}
         list={node.children}

@@ -22,6 +22,8 @@
   outline: 1px solid #2196f3;
   cursor: move;
   margin: 10px;
+  min-height: 50px;
+  min-width: 100px;
   backgroundColor: white;
 }
 .view-container .tree-node-wrapper.active {

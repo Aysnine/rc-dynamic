@@ -37,15 +37,31 @@
 }
 .view-container .tree-root:empty {
   background-color: #e6f4fa;
+  position: relative;
+}
+.view-container .tree-root:empty::after {
+  content: "drop here";
+  position: absolute;
+  top: 40%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  font-size: 22px;
+  color: #78909C;
 }
 .view-container .tree-node-wrapper,
 .view-container .component-item-wrapper {
   outline: 1px solid #2196f3;
   cursor: move;
   margin: 10px;
-  min-height: 50px;
+  min-height: 1em;
   min-width: 100px;
   backgroundColor: white;
+}
+.view-container .component-item-wrapper {
+  padding: 10px;
+  min-height: unset;
 }
 .view-container .tree-node-wrapper.active {
   outline: 2px solid #7e57c2;

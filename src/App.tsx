@@ -6,7 +6,7 @@ import { mockTree } from './mockData'
 
 const App = () => {
   const [tree, setTree] = useState<DynamicTreeNode[]>(mockTree)
-  const [activeId, setActiveId] = useState<string>('6')
+  const [activeId, setActiveId] = useState<string>('2')
 
   // ! force render for portal
   const panel = useRef<HTMLDivElement>(null)

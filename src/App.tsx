@@ -1,12 +1,20 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useLocalStorage, useUpdate } from 'react-use'
 import { DynamicTreeNode } from './components'
 import TreeRoot from './components/core/TreeRoot'
 import { mockTree } from './mockData'
 
 const App = () => {
-  const [tree, setTree] = useLocalStorage<DynamicTreeNode[]>('tree', mockTree)
-  const [activeId, setActiveId] = useLocalStorage<string>('activeId', '2')
+  const [$tree, $setTree] = useLocalStorage<DynamicTreeNode[]>('tree', mockTree)
+  const [$activeId, $setActiveId] = useLocalStorage<string>('activeId', '2')
+
+  const [tree, setTree] = useState<DynamicTreeNode[]>($tree)
+  const [activeId, setActiveId] = useState<string>($activeId)
+
+  useEffect(() => {
+    $setTree(tree)
+    $setActiveId(activeId)
+  }, [tree, activeId, $setTree, $setActiveId])
 
   const handleResetDefault = useCallback(() => {
     setTree(mockTree)

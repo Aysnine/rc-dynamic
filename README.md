@@ -1,6 +1,6 @@
 # rc-dynamic
 
-React component dynamic drag and drop build, config and render.
+React component Drag and Drop and Config Driven UI demo.
 
 ## Main integrations
 

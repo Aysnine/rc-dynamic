@@ -32,6 +32,7 @@ const DynamicTreeNodeComponent: FC<{
   )
 
   const update = useUpdate()
+
   const setMeta = useCallback(
     (newMeta: DynamicTreeNode['meta']) => {
       node.meta = newMeta
@@ -39,6 +40,22 @@ const DynamicTreeNodeComponent: FC<{
     },
     [node, update]
   )
+
+  const inactive = useCallback(() => {
+    setActiveId('')
+  }, [setActiveId])
+
+  const remove = useCallback(() => {
+    setTree((sourceNodes) => {
+      const tempNodes = [...sourceNodes]
+      const _nodeIndex = [...indexPath]
+      const lastIndex = _nodeIndex.pop()
+      const lastArr = _nodeIndex.reduce((arr, i) => arr[i]['children'], tempNodes)
+      lastArr.splice(lastIndex, 1)
+      return tempNodes
+    })
+    inactive()
+  }, [inactive, indexPath, setTree])
 
   const compProps: BaseProps = {
     node,
@@ -51,11 +68,14 @@ const DynamicTreeNodeComponent: FC<{
     setMeta,
     meta: node.meta,
     panel,
+    update,
+    remove,
+    inactive,
   }
 
   const handleActive = useCallback(
     (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      event.stopPropagation() // ! portal effect
+      event.stopPropagation() // ! for child active
       setActiveId(node.id)
     },
     [node.id, setActiveId]

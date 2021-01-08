@@ -35,6 +35,9 @@ export interface BaseProps<M = any> {
   activeId: string
   setActiveId: React.Dispatch<React.SetStateAction<string>>
   panel: MutableRefObject<HTMLDivElement>
+  update: () => void
+  remove: () => void
+  inactive: () => void
 }
 
 export const normalSortableOptions = {

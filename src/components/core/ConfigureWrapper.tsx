@@ -1,17 +1,10 @@
-import { FC, useCallback } from 'react'
+import { FC } from 'react'
 import { createPortal } from 'react-dom'
 import { BaseProps } from '..'
 
-const ConfigureWrapper: FC<BaseProps> = ({ node, setActiveId, panel, children }) => {
-  const handleCancelActive = useCallback(() => {
-    setActiveId('')
-  }, [setActiveId])
-
-  const handleDelete = useCallback(() => {
-    // TODO
-  }, [])
-
+const ConfigureWrapper: FC<BaseProps> = ({ node, setActiveId, panel, remove, inactive, children }) => {
   if (!panel.current) return null
+
   return createPortal(
     <div
       onClick={(event) => {
@@ -20,9 +13,9 @@ const ConfigureWrapper: FC<BaseProps> = ({ node, setActiveId, panel, children })
       }}
     >
       <div>
-        <button onClick={handleCancelActive}>X</button>
+        <button onClick={inactive}>X</button>
         &nbsp; | &nbsp;
-        <button onClick={handleDelete}>Delete（TODO）</button>
+        <button onClick={remove}>Remove</button>
       </div>
       <p>
         <b>

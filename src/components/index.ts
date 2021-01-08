@@ -1,5 +1,5 @@
 import { FC, MutableRefObject } from 'react'
-import { Store } from 'react-sortablejs'
+import { GroupOptions, Store } from 'react-sortablejs'
 import Container from './basic/Container'
 import ContainerConfigure from './basic/Container/components/Configure'
 import LineChart from './basic/LineChart'
@@ -50,5 +50,5 @@ export const normalSortableOptions = {
   swapThreshold: 0.65,
   ghostClass: 'ghost',
   group: 'shared',
-  style: { overflow: 'auto' }, // TODO only edit mode for margin
+  style: { overflow: 'auto' },
 }

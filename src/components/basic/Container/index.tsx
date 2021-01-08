@@ -24,12 +24,12 @@ const Container: FC<BaseProps<ContainerMeta>> = ({
       <div style={{ padding: '5px', paddingBottom: 0 }}>container</div>
       <ReactSortable
         key={node.id}
-        list={node.children}
-        setList={setCurrentTree}
         {...normalSortableOptions}
+        list={node.children ?? []}
+        setList={setCurrentTree}
         className={`container ${direction}`}
       >
-        {node.children.map((childNode, index) => (
+        {node.children?.map((childNode, index) => (
           <TreeNode
             key={childNode.id}
             node={childNode}

@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useLocalStorage, useUpdate } from 'react-use'
 import { DynamicTreeNode } from './components'
+import MaterialPanel from './components/core/MaterialPanel'
 import TreeRoot from './components/core/TreeRoot'
 import { mockTree } from './mockData'
 
@@ -44,7 +45,7 @@ const App = () => {
         <p>
           <b>Components</b>
         </p>
-        <p>TODO</p>
+        <MaterialPanel />
       </div>
       <div className="view-container">
         <TreeRoot tree={tree} setTree={setTree} activeId={activeId} setActiveId={setActiveId} panel={panel} />

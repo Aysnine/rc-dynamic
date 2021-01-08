@@ -1,8 +1,7 @@
 .workspace {
   display: flex;
-  flexDirection: row;
-  justify-content: stretch;
-  min-height: calc(100vh - 20px);
+  flex-direction: row;
+  align-items: stretch;
 }
 
 .material-panel {
@@ -11,14 +10,36 @@
   padding: 5px;
   margin: 10px;
 }
+.material-panel .component-item-wrapper {
+  padding: 10px;
+  cursor: move;
+  background-color: #e6f4fa;
+  margin: 5px 0;
+}
+.material-panel .component-item-wrapper.ghost,
+.material-panel .component-item-wrapper:focus,
+.material-panel .component-item-wrapper:hover {
+  outline: 1px solid #2196f3;
+}
 
 .view-container {
   flex: 1;
   width: 0;
-  padding: 50px 5px;
-  margin: 5px;
+  margin: 10px 5px;
+  overflow-y: auto;
+  height: calc(100vh - 40px);
 }
-.view-container .tree-node-wrapper {
+.view-container .tree-root {
+  padding: 20px 5px 200px;
+  min-height: 300px;
+  box-sizing: border-box;
+  border: 1px dashed #2196f3;
+}
+.view-container .tree-root:empty {
+  background-color: #e6f4fa;
+}
+.view-container .tree-node-wrapper,
+.view-container .component-item-wrapper {
   outline: 1px solid #2196f3;
   cursor: move;
   margin: 10px;
@@ -37,6 +58,7 @@
 }
 .view-container .container {
   display: flex;
+  min-height: 100px;
 }
 .view-container .container.horizontal {
   flex-direction: row;

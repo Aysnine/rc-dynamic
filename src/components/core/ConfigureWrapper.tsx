@@ -1,8 +1,13 @@
 import { FC } from 'react'
 import { createPortal } from 'react-dom'
+import { useKey } from 'react-use'
 import { BaseProps } from '..'
 
-const ConfigureWrapper: FC<BaseProps> = ({ node, panel, remove, inactive, children }) => {
+const ConfigureWrapper: FC<BaseProps> = ({ node, panel, remove, inactive, activeId, children }) => {
+  const active = activeId === node.id
+
+  useKey('Backspace', () => active && remove(), undefined, [active, remove])
+
   if (!panel.current) return null
 
   return createPortal(
@@ -15,7 +20,7 @@ const ConfigureWrapper: FC<BaseProps> = ({ node, panel, remove, inactive, childr
       <div>
         <button onClick={inactive}>X</button>
         &nbsp; | &nbsp;
-        <button onClick={remove}>Remove</button>
+        <button onClick={remove}>Remove [Backspace]</button>
       </div>
       <p>
         <b>

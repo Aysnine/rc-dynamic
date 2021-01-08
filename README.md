@@ -27,6 +27,12 @@ yarn lint
 yarn type
 ```
 
+## Components
+
+- [Container](./src/components/basic/Container/index.tsx)
+- [Text](./src/components/basic/Text/index.tsx)
+- [LineChart](./src/components/basic/LineChart/index.tsx)
+
 ## DnD & Sortable library
 
 - 😅 [atlassian/react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)

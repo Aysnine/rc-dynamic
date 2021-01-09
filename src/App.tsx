@@ -3,12 +3,15 @@ import { useLocalStorage, useUpdate } from 'react-use'
 import { DynamicTreeNode } from './components'
 import MaterialPanel from './components/core/MaterialPanel'
 import TreeRoot from './components/core/TreeRoot'
-import { mockTree } from './mockData'
+import { complexTree } from './mockData'
 import { version } from '../package.json'
 
+const defaultTree = complexTree
+const defaultActiveId = '1'
+
 const App = () => {
-  const [$tree, $setTree] = useLocalStorage<DynamicTreeNode[]>(version + '__tree', mockTree)
-  const [$activeId, $setActiveId] = useLocalStorage<string>(version + '__activeId', '2')
+  const [$tree, $setTree] = useLocalStorage<DynamicTreeNode[]>(version + '__tree', defaultTree)
+  const [$activeId, $setActiveId] = useLocalStorage<string>(version + '__activeId', defaultActiveId)
 
   const [tree, setTree] = useState<DynamicTreeNode[]>($tree)
   const [activeId, setActiveId] = useState<string>($activeId)
@@ -19,8 +22,8 @@ const App = () => {
   }, [tree, activeId, $setTree, $setActiveId])
 
   const handleResetDefault = useCallback(() => {
-    setTree(mockTree)
-    setActiveId('2')
+    setTree(defaultTree)
+    setActiveId(defaultActiveId)
   }, [setActiveId, setTree])
 
   const handleClear = useCallback(() => {

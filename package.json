@@ -8,7 +8,8 @@
     "serve": "node bin/dev.js",
     "build": "node bin/build.js",
     "lint": "eslint . --fix",
-    "type": "tsc"
+    "type": "tsc",
+    "release": "standard-version"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",
@@ -37,6 +38,7 @@
     "jest": "^26.6.3",
     "live-server": "^1.2.1",
     "prettier": "^2.2.1",
+    "standard-version": "^9.1.0",
     "typescript": "^4.1.3"
   },
   "dependencies": {

@@ -1,6 +1,7 @@
-const path = require('path')
-const { build } = require('esbuild')
 const fs = require('fs')
+const path = require('path')
+const gzipme = require('gzipme')
+const { build } = require('esbuild')
 
 process.on('unhandledRejection', (error) => {
   console.error('unhandledRejection:', error)
@@ -28,4 +29,7 @@ process.on('unhandledRejection', (error) => {
     // React jsx runtime
     inject: [path.join(__dirname, './_shim.js')],
   })
+
+  // create gz file
+  gzipme('dist/index.js', { mode: 'best' })
 })()

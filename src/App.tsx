@@ -4,10 +4,11 @@ import { DynamicTreeNode } from './components'
 import MaterialPanel from './components/core/MaterialPanel'
 import TreeRoot from './components/core/TreeRoot'
 import { mockTree } from './mockData'
+import { version } from '../package.json'
 
 const App = () => {
-  const [$tree, $setTree] = useLocalStorage<DynamicTreeNode[]>('tree', mockTree)
-  const [$activeId, $setActiveId] = useLocalStorage<string>('activeId', '2')
+  const [$tree, $setTree] = useLocalStorage<DynamicTreeNode[]>(version + '__tree', mockTree)
+  const [$activeId, $setActiveId] = useLocalStorage<string>(version + '__activeId', '2')
 
   const [tree, setTree] = useState<DynamicTreeNode[]>($tree)
   const [activeId, setActiveId] = useState<string>($activeId)

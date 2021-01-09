@@ -6,6 +6,8 @@ import GaugeChart from './basic/GaugeChart'
 import GaugeChartConfigure from './basic/GaugeChart/components/Configure'
 import LineChart from './basic/LineChart'
 import LineChartConfigure from './basic/LineChart/components/Configure'
+import SunburstChart from './basic/SunburstChart'
+import SunburstChartConfigure from './basic/SunburstChart/components/Configure'
 import Text from './basic/Text'
 import TextConfigure from './basic/Text/components/Configure'
 
@@ -14,6 +16,7 @@ export const DynamicComponentMap = {
   container: Container,
   lineChart: LineChart,
   gaugeChart: GaugeChart,
+  sunburstChart: SunburstChart,
 }
 
 export type ComponentKey = keyof typeof DynamicComponentMap
@@ -23,6 +26,7 @@ export const ConfigureMap: Record<ComponentKey, FC<BaseProps>> = {
   container: ContainerConfigure,
   lineChart: LineChartConfigure,
   gaugeChart: GaugeChartConfigure,
+  sunburstChart: SunburstChartConfigure,
 }
 
 export interface DynamicTreeNode<M = any> {

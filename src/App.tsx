@@ -7,7 +7,7 @@ import { complexTree } from './mockData'
 import { version } from '../package.json'
 
 const defaultTree = complexTree
-const defaultActiveId = '1'
+const defaultActiveId = '4'
 
 const App = () => {
   const [$tree, $setTree] = useLocalStorage<DynamicTreeNode[]>(version + '__tree', defaultTree)

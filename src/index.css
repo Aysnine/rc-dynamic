@@ -118,3 +118,6 @@
   display: inline-flex;
   margin-bottom: 5px;
 }
+.active-panel .config-wrapper fieldset {
+  border: 1px solid #B39DDB;
+}

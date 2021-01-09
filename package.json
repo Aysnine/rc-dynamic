@@ -1,6 +1,6 @@
 {
   "name": "rc-dynamic",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "react component dynamic build and render",
   "license": "MIT",
   "private": false,

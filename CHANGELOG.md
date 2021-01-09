@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3-0](https://github.com/Aysnine/rc-dynamic/compare/v0.0.2...v0.0.3-0) (2021-01-09)
+
+
+### Bug Fixes
+
+* mock data ([a56cc7b](https://github.com/Aysnine/rc-dynamic/commit/a56cc7bcd2037cb08d41091bdecf5f7f017af307))
+
 ### [0.0.2](https://github.com/Aysnine/rc-dynamic/compare/v0.0.1...v0.0.2) (2021-01-09)
 
 ### 0.0.1 (2021-01-09)

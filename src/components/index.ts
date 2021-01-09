@@ -26,6 +26,12 @@ export interface DynamicTreeNode<M = any> {
   component: ComponentKey
   meta?: M
   children?: DynamicTreeNode[]
+
+  // ! by sortable runtime, need clean
+  // ! https://github.com/SortableJS/react-sortablejs#list
+  selected?: boolean
+  chosen?: boolean
+  filtered?: boolean
 }
 
 export interface BaseProps<M = any> {

@@ -2,6 +2,8 @@ import { FC, MutableRefObject } from 'react'
 import { Store } from 'react-sortablejs'
 import Container from './basic/Container'
 import ContainerConfigure from './basic/Container/components/Configure'
+import GaugeChart from './basic/GaugeChart'
+import GaugeChartConfigure from './basic/GaugeChart/components/Configure'
 import LineChart from './basic/LineChart'
 import LineChartConfigure from './basic/LineChart/components/Configure'
 import Text from './basic/Text'
@@ -11,6 +13,7 @@ export const DynamicComponentMap = {
   text: Text,
   container: Container,
   lineChart: LineChart,
+  gaugeChart: GaugeChart,
 }
 
 export type ComponentKey = keyof typeof DynamicComponentMap
@@ -19,6 +22,7 @@ export const ConfigureMap: Record<ComponentKey, FC<BaseProps>> = {
   text: TextConfigure,
   container: ContainerConfigure,
   lineChart: LineChartConfigure,
+  gaugeChart: GaugeChartConfigure,
 }
 
 export interface DynamicTreeNode<M = any> {

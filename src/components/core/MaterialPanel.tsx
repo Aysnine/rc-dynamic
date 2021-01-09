@@ -8,6 +8,7 @@ const all: DynamicTreeNode[] = [
   { id: getUUID(), component: 'container' },
   { id: getUUID(), component: 'text' },
   { id: getUUID(), component: 'lineChart' },
+  { id: getUUID(), component: 'gaugeChart' },
 ]
 
 const clone = (item: DynamicTreeNode) => ({ ...item, id: getUUID() })
@@ -27,6 +28,7 @@ const MaterialPanel: FC = () => {
       <div className="component-item-wrapper">Container</div>
       <div className="component-item-wrapper">Text</div>
       <div className="component-item-wrapper">LineChart</div>
+      <div className="component-item-wrapper">GaugeChart</div>
     </ReactSortable>
   )
 }

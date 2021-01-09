@@ -15,7 +15,7 @@ const ConfigureWrapper: FC<BaseProps> = ({ node, panel, remove, inactive, active
       <div>
         <button onClick={inactive}>X</button>
         &nbsp; | &nbsp;
-        <button onClick={remove}>Remove [Backspace]</button>
+        <button onClick={remove}>Remove</button>
       </div>
       <p>
         <b>

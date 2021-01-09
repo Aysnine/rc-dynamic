@@ -72,6 +72,7 @@
 .view-container .active.ghost {
   background-color: #e6e6fa;
 }
+
 .view-container .container {
   display: flex;
   min-height: 100px;
@@ -85,6 +86,15 @@
 }
 .view-container .container.vertical {
   flex-direction: column;
+}
+
+.view-container .text {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+.view-container .text:empty::after {
+  content: '[empty]';
+  color: gray;
 }
 
 .active-panel {
@@ -103,4 +113,8 @@
   padding: 10px;
   background-color: lavender;
   overflow: auto;
+}
+.active-panel .config-wrapper label {
+  display: inline-flex;
+  margin-bottom: 5px;
 }

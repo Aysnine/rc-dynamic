@@ -41,6 +41,10 @@ const DynamicTreeNodeComponent: FC<{
     [node, update]
   )
 
+  const applyMeta = useCallback(() => {
+    setTree((sourceNodes) => [...sourceNodes])
+  }, [setTree])
+
   const inactive = useCallback(() => {
     setActiveId('')
   }, [setActiveId])
@@ -71,6 +75,7 @@ const DynamicTreeNodeComponent: FC<{
     update,
     remove,
     inactive,
+    applyMeta,
   }
 
   const handleActive = useCallback(

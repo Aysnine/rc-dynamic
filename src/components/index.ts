@@ -1,5 +1,5 @@
 import { FC, MutableRefObject } from 'react'
-import { GroupOptions, Store } from 'react-sortablejs'
+import { Store } from 'react-sortablejs'
 import Container from './basic/Container'
 import ContainerConfigure from './basic/Container/components/Configure'
 import LineChart from './basic/LineChart'
@@ -42,6 +42,7 @@ export interface BaseProps<M = any> {
   update: () => void
   remove: () => void
   inactive: () => void
+  applyMeta: () => void
 }
 
 export const normalSortableOptions = {

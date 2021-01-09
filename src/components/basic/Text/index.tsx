@@ -1,10 +1,30 @@
 import { FC } from 'react'
 import { BaseProps } from '../../'
 
-export interface TextMeta {
-  value?: string
+export enum TextSize {
+  SMALL = '.8em',
+  NORMAL = '1em',
+  LARGE = '1.5em',
 }
 
-const Text: FC<BaseProps<TextMeta>> = ({ meta }) => <div>{meta?.value || '[empty]'}</div>
+export interface TextMeta {
+  value?: string
+  size?: TextSize
+}
+
+export const defaults: TextMeta = {
+  value: '',
+  size: TextSize.NORMAL,
+}
+
+const Text: FC<BaseProps<TextMeta>> = ({ meta }) => {
+  const size = meta?.size ?? defaults.size
+
+  return (
+    <div className="text" style={{ fontSize: size }}>
+      {meta?.value}
+    </div>
+  )
+}
 
 export default Text

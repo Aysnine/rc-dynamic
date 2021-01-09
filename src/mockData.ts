@@ -47,7 +47,7 @@ export const complexTree: DynamicTreeNode[] = [
     meta: { direction: 'horizontal' },
   },
   {
-    id: '5',
+    id: '17',
     component: 'container',
     children: [
       { id: '8', component: 'gaugeChart' },

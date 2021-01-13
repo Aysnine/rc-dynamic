@@ -10,7 +10,7 @@ export interface SunburstMeta {
 
 const Sunburst: FC<BaseProps<SunburstMeta>> = () => {
   const container = useRef<HTMLDivElement>(null)
-  const chart = useRef<ReturnType<typeof echarts.init>>(null)
+  const chart = useRef<ReturnType<typeof echarts.init>>()
 
   useMount(() => {
     chart.current?.resize()
@@ -26,8 +26,10 @@ const Sunburst: FC<BaseProps<SunburstMeta>> = () => {
   }, [windowSize.width, windowSize.height])
 
   useEffectOnce(() => {
-    chart.current = echarts.init(container.current)
-    chart.current.setOption(mockOption)
+    if (container.current) {
+      chart.current = echarts.init(container.current)
+      chart.current.setOption(mockOption)
+    }
   })
 
   return <div ref={container} style={{ height: '300px', overflow: 'hidden' }}></div>

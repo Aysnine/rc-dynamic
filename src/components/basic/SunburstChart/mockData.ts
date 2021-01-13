@@ -14,7 +14,7 @@ export const mockOption: EChartsOption = {
   series: {
     radius: ['15%', '80%'],
     type: 'sunburst',
-    sort: null,
+    sort: 'desc',
     emphasis: {
       focus: 'ancestor',
     },

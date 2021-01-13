@@ -30,7 +30,7 @@ export interface LineChartMeta {
 
 const LineChart: FC<BaseProps<LineChartMeta>> = () => {
   const container = useRef<HTMLDivElement>(null)
-  const chart = useRef<ReturnType<typeof echarts.init>>(null)
+  const chart = useRef<ReturnType<typeof echarts.init> | null>()
 
   useMount(() => {
     chart.current?.resize()
@@ -46,8 +46,10 @@ const LineChart: FC<BaseProps<LineChartMeta>> = () => {
   }, [windowSize.width, windowSize.height])
 
   useEffectOnce(() => {
-    chart.current = echarts.init(container.current)
-    chart.current.setOption(defaultOption)
+    if (container.current) {
+      chart.current = echarts.init(container.current)
+      chart.current.setOption(defaultOption)
+    }
   })
 
   return <div ref={container} style={{ height: '300px', overflow: 'hidden' }}></div>

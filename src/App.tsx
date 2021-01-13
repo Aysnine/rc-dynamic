@@ -10,8 +10,8 @@ const defaultTree = complexTree
 const defaultActiveId = '4'
 
 const App = () => {
-  const [$tree, $setTree] = useLocalStorage<DynamicTreeNode[]>(version + '__tree', defaultTree)
-  const [$activeId, $setActiveId] = useLocalStorage<string>(version + '__activeId', defaultActiveId)
+  const [$tree = [], $setTree] = useLocalStorage<DynamicTreeNode[]>(version + '__tree', defaultTree)
+  const [$activeId = '', $setActiveId] = useLocalStorage<string>(version + '__activeId', defaultActiveId)
 
   const [tree, setTree] = useState<DynamicTreeNode[]>($tree)
   const [activeId, setActiveId] = useState<string>($activeId)

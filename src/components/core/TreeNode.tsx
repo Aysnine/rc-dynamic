@@ -1,4 +1,4 @@
-import { FC, MutableRefObject, useCallback } from 'react'
+import { Dispatch, FC, RefObject, SetStateAction, useCallback } from 'react'
 import { Store } from 'react-sortablejs'
 import { useUpdate } from 'react-use'
 import { ConfigureMap, DynamicComponentMap } from '..'
@@ -9,10 +9,10 @@ const DynamicTreeNodeComponent: FC<{
   node: DynamicTreeNode
   index: number
   indexPath: number[]
-  setTree: React.Dispatch<React.SetStateAction<DynamicTreeNode[]>>
+  setTree: Dispatch<SetStateAction<DynamicTreeNode[]>>
   activeId: string
-  setActiveId: React.Dispatch<React.SetStateAction<string>>
-  panel: MutableRefObject<HTMLDivElement>
+  setActiveId: Dispatch<SetStateAction<string>>
+  panel: RefObject<HTMLDivElement>
 }> = ({ node, index, setTree, indexPath, activeId, setActiveId, panel }) => {
   const Comp: FC<BaseProps> = DynamicComponentMap[node.component]
   const CompConfigure: FC<BaseProps> = ConfigureMap[node.component]
@@ -22,8 +22,8 @@ const DynamicTreeNodeComponent: FC<{
       setTree((sourceNodes) => {
         const tempNodes = [...sourceNodes]
         const _nodeIndex = [...indexPath]
-        const lastIndex = _nodeIndex.pop()
-        const lastArr = _nodeIndex.reduce((arr, i) => arr[i]['children'], tempNodes)
+        const lastIndex = _nodeIndex.pop() || 0
+        const lastArr = _nodeIndex.reduce((arr, i) => arr[i]['children'] || [], tempNodes)
         lastArr[lastIndex]['children'] = currentNodes
         return tempNodes
       })
@@ -53,8 +53,8 @@ const DynamicTreeNodeComponent: FC<{
     setTree((sourceNodes) => {
       const tempNodes = [...sourceNodes]
       const _nodeIndex = [...indexPath]
-      const lastIndex = _nodeIndex.pop()
-      const lastArr = _nodeIndex.reduce((arr, i) => arr[i]['children'], tempNodes)
+      const lastIndex = _nodeIndex.pop() || 0
+      const lastArr = _nodeIndex.reduce((arr, i) => arr[i]['children'] || [], tempNodes)
       lastArr.splice(lastIndex, 1)
       return tempNodes
     })

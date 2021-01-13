@@ -46,7 +46,7 @@ export interface GaugeChartMeta {
 
 const GaugeChart: FC<BaseProps<GaugeChartMeta>> = () => {
   const container = useRef<HTMLDivElement>(null)
-  const chart = useRef<ReturnType<typeof echarts.init>>(null)
+  const chart = useRef<ReturnType<typeof echarts.init> | null>()
 
   useMount(() => {
     chart.current?.resize()
@@ -62,8 +62,10 @@ const GaugeChart: FC<BaseProps<GaugeChartMeta>> = () => {
   }, [windowSize.width, windowSize.height])
 
   useEffectOnce(() => {
-    chart.current = echarts.init(container.current)
-    chart.current.setOption(defaultOption)
+    if (container.current) {
+      chart.current = echarts.init(container.current)
+      chart.current.setOption(defaultOption)
+    }
   })
 
   return <div ref={container} style={{ height: '160px', overflow: 'hidden' }}></div>

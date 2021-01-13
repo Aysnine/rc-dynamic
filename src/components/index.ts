@@ -1,4 +1,4 @@
-import { FC, MutableRefObject } from 'react'
+import { Dispatch, FC, RefObject, SetStateAction } from 'react'
 import { Store } from 'react-sortablejs'
 import Container from './basic/Container'
 import ContainerConfigure from './basic/Container/components/Configure'
@@ -46,13 +46,13 @@ export interface BaseProps<M = any> {
   node: DynamicTreeNode
   index: number
   indexPath: number[]
-  setTree: React.Dispatch<React.SetStateAction<DynamicTreeNode[]>>
+  setTree: Dispatch<SetStateAction<DynamicTreeNode[]>>
   setCurrentTree: (newState: DynamicTreeNode[], sortable: any, store: Store) => void
   meta?: M
   setMeta: (newMeta: M) => void
   activeId: string
-  setActiveId: React.Dispatch<React.SetStateAction<string>>
-  panel: MutableRefObject<HTMLDivElement>
+  setActiveId: Dispatch<SetStateAction<string>>
+  panel: RefObject<HTMLDivElement>
   update: () => void
   remove: () => void
   inactive: () => void

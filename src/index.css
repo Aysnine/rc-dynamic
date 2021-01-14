@@ -66,10 +66,12 @@
 .view-container .tree-node-wrapper.active {
   outline: 2px solid #7e57c2;
 }
-.view-container .ghost {
+.view-container .ghost,
+.view-container .sortable-chosen {
   background-color: #e6f4fa;
 }
-.view-container .active.ghost {
+.view-container .active.ghost,
+.view-container .active.sortable-chosen {
   background-color: #e6e6fa;
 }
 

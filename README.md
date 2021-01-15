@@ -34,6 +34,8 @@ yarn type
 - [Container](./src/components/basic/Container/index.tsx)
 - [Text](./src/components/basic/Text/index.tsx)
 - [LineChart](./src/components/basic/LineChart/index.tsx)
+- [GaugeChart](./src/components/basic/GaugeChart/index.tsx)
+- [SunburstChart](./src/components/basic/SunburstChart/index.tsx)
 
 ## DnD & Sortable library
 

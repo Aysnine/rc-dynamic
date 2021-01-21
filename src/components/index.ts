@@ -55,6 +55,7 @@ export interface BaseProps<M = any> {
   panel: RefObject<HTMLDivElement>
   update: () => void
   remove: () => void
+  duplicate: () => void
   inactive: () => void
   applyMeta: () => void
   mode: Mode

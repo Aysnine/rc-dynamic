@@ -1,9 +1,12 @@
 import { Dispatch, FC, RefObject, SetStateAction, useCallback } from 'react'
 import { Store } from 'react-sortablejs'
 import { useUpdate } from 'react-use'
+import { clone } from 'ramda'
 import { ConfigureMap, DynamicComponentMap, Mode } from '..'
 import { BaseProps, DynamicTreeNode } from '..'
 import ConfigureWrapper from './ConfigureWrapper'
+
+export const getUUID = () => Math.random().toString().slice(2)
 
 const DynamicTreeNodeComponent: FC<{
   node: DynamicTreeNode
@@ -62,6 +65,23 @@ const DynamicTreeNodeComponent: FC<{
     inactive()
   }, [inactive, indexPath, setTree])
 
+  const duplicate = useCallback(() => {
+    setTree((sourceNodes) => {
+      const tempNodes = [...sourceNodes]
+      const _nodeIndex = [...indexPath]
+      const lastIndex = _nodeIndex.pop() || 0
+      const lastArr = _nodeIndex.reduce((arr, i) => arr[i]['children'] || [], tempNodes)
+      const cloneItem = clone(lastArr[lastIndex])
+      const revRenewId = (i: typeof cloneItem): typeof cloneItem => {
+        i.id = getUUID()
+        i.children?.map((i) => revRenewId(i))
+        return i
+      }
+      lastArr.splice(lastIndex + 1, 0, revRenewId(cloneItem))
+      return tempNodes
+    })
+  }, [indexPath, setTree])
+
   const compProps: BaseProps = {
     node,
     index,
@@ -75,6 +95,7 @@ const DynamicTreeNodeComponent: FC<{
     panel,
     update,
     remove,
+    duplicate,
     inactive,
     applyMeta,
     mode,

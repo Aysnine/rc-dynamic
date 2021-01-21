@@ -1,8 +1,7 @@
 import { FC, useState } from 'react'
 import { ReactSortable } from 'react-sortablejs'
 import { DynamicTreeNode, normalSortableOptions } from '..'
-
-const getUUID = () => Math.random().toString().slice(2)
+import { getUUID } from './TreeNode'
 
 const all: DynamicTreeNode[] = [
   { id: getUUID(), component: 'container' },

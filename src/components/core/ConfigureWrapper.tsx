@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { createPortal } from 'react-dom'
 import { BaseProps } from '..'
 
-const ConfigureWrapper: FC<BaseProps> = ({ node, panel, remove, inactive, activeId, children }) => {
+const ConfigureWrapper: FC<BaseProps> = ({ node, panel, remove, duplicate, inactive, children }) => {
   if (!panel.current) return null
 
   return createPortal(
@@ -16,6 +16,8 @@ const ConfigureWrapper: FC<BaseProps> = ({ node, panel, remove, inactive, active
         <button onClick={inactive}>X</button>
         &nbsp; | &nbsp;
         <button onClick={remove}>Remove</button>
+        &nbsp;
+        <button onClick={duplicate}>Duplicate</button>
       </div>
       <p>
         <b>

@@ -1,7 +1,7 @@
 import { Dispatch, FC, RefObject, SetStateAction, useCallback } from 'react'
 import { Store } from 'react-sortablejs'
 import { useUpdate } from 'react-use'
-import { ConfigureMap, DynamicComponentMap } from '..'
+import { ConfigureMap, DynamicComponentMap, Mode } from '..'
 import { BaseProps, DynamicTreeNode } from '..'
 import ConfigureWrapper from './ConfigureWrapper'
 
@@ -13,7 +13,8 @@ const DynamicTreeNodeComponent: FC<{
   activeId: string
   setActiveId: Dispatch<SetStateAction<string>>
   panel: RefObject<HTMLDivElement>
-}> = ({ node, index, setTree, indexPath, activeId, setActiveId, panel }) => {
+  mode: Mode
+}> = ({ node, index, setTree, indexPath, activeId, setActiveId, mode, panel }) => {
   const Comp: FC<BaseProps> = DynamicComponentMap[node.component]
   const CompConfigure: FC<BaseProps> = ConfigureMap[node.component]
 
@@ -76,6 +77,7 @@ const DynamicTreeNodeComponent: FC<{
     remove,
     inactive,
     applyMeta,
+    mode,
   }
 
   const handleActive = useCallback(

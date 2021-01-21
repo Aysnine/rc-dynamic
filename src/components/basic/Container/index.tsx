@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { ReactSortable } from 'react-sortablejs'
 import TreeNode from '../../core/TreeNode'
-import { BaseProps, normalSortableOptions } from '../../'
+import { BaseProps, Mode, normalSortableOptions } from '../../'
 
 export interface ContainerMeta {
   direction?: 'vertical' | 'horizontal'
@@ -16,13 +16,15 @@ const Container: FC<BaseProps<ContainerMeta>> = ({
   setActiveId,
   panel,
   meta,
+  mode,
 }) => {
   const direction = meta?.direction ?? 'vertical'
 
   return (
     <>
-      <div style={{ padding: '5px', paddingBottom: 0 }}>container</div>
+      {mode === Mode.CREATIVE && <div style={{ padding: '5px', paddingBottom: 0 }}>container</div>}
       <ReactSortable
+        disabled={mode !== Mode.CREATIVE}
         key={node.id}
         {...normalSortableOptions}
         list={node.children ?? []}
@@ -39,6 +41,7 @@ const Container: FC<BaseProps<ContainerMeta>> = ({
             activeId={activeId}
             setActiveId={setActiveId}
             panel={panel}
+            mode={mode}
           />
         ))}
       </ReactSortable>

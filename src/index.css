@@ -25,21 +25,23 @@
 .view-container {
   flex: 1;
   width: 0;
+}
+.mode-CREATIVE .view-container {
   margin: 10px 5px;
   overflow-y: auto;
   height: calc(100vh - 40px);
 }
-.view-container .tree-root {
+.mode-CREATIVE .view-container .tree-root {
   padding: 20px 5px 200px;
   min-height: 300px;
   box-sizing: border-box;
   border: 1px dashed #2196f3;
 }
-.view-container .tree-root:empty {
+.mode-CREATIVE .view-container .tree-root:empty {
   background-color: #e6f4fa;
   position: relative;
 }
-.view-container .tree-root:empty::after {
+.mode-CREATIVE .view-container .tree-root:empty::after {
   content: "drop here";
   position: absolute;
   top: 40%;
@@ -50,8 +52,8 @@
   font-size: 22px;
   color: #78909C;
 }
-.view-container .tree-node-wrapper,
-.view-container .component-item-wrapper {
+.mode-CREATIVE .view-container .tree-node-wrapper,
+.mode-CREATIVE .view-container .component-item-wrapper {
   outline: 1px solid #2196f3;
   cursor: move;
   margin: 10px;
@@ -59,24 +61,26 @@
   min-width: 100px;
   backgroundColor: white;
 }
-.view-container .component-item-wrapper {
+.mode-CREATIVE .view-container .component-item-wrapper {
   padding: 10px;
   min-height: unset;
 }
-.view-container .tree-node-wrapper.active {
+.mode-CREATIVE .view-container .tree-node-wrapper.active {
   outline: 2px solid #7e57c2;
 }
-.view-container .ghost,
-.view-container .sortable-chosen {
+.mode-CREATIVE .view-container .ghost,
+.mode-CREATIVE .view-container .sortable-chosen {
   background-color: #e6f4fa;
 }
-.view-container .active.ghost,
-.view-container .active.sortable-chosen {
+.mode-CREATIVE .view-container .active.ghost,
+.mode-CREATIVE .view-container .active.sortable-chosen {
   background-color: #e6e6fa;
 }
 
 .view-container .container {
   display: flex;
+}
+.mode-CREATIVE .view-container .container {
   min-height: 100px;
 }
 .view-container .container.horizontal {
@@ -94,7 +98,7 @@
   white-space: pre-wrap;
   overflow-wrap: break-word;
 }
-.view-container .text:empty::after {
+.mode-CREATIVE .view-container .text:empty::after {
   content: '[empty]';
   color: gray;
 }
@@ -122,4 +126,12 @@
 }
 .active-panel .config-wrapper fieldset {
   border: 1px solid #B39DDB;
+}
+
+.runtime-helper {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  background-color: #6666;
+  padding: 10px;
 }

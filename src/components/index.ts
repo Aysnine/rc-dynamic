@@ -57,6 +57,7 @@ export interface BaseProps<M = any> {
   remove: () => void
   inactive: () => void
   applyMeta: () => void
+  mode: Mode
 }
 
 export const normalSortableOptions = {
@@ -66,4 +67,9 @@ export const normalSortableOptions = {
   ghostClass: 'ghost',
   group: 'shared',
   style: { overflow: 'auto' },
+}
+
+export enum Mode {
+  CREATIVE = 'CREATIVE',
+  RUNTIME = 'RUNTIME',
 }

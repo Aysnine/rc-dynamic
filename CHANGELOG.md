@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/Aysnine/rc-dynamic/compare/v0.0.3...v0.0.4) (2021-01-21)
+
+
+### Features
+
+* deep duplicate ([17a4239](https://github.com/Aysnine/rc-dynamic/commit/17a4239e977bc1110681c2112acfc1e853e36109))
+* **mode:** creative and runtime ([9abfe84](https://github.com/Aysnine/rc-dynamic/commit/9abfe8403cd28e98fa23cffff953203514587630))
+
 ### [0.0.3](https://github.com/Aysnine/rc-dynamic/compare/v0.0.3-0...v0.0.3) (2021-01-17)
 
 ### [0.0.3-0](https://github.com/Aysnine/rc-dynamic/compare/v0.0.2...v0.0.3-0) (2021-01-09)

@@ -8,7 +8,7 @@ import ConfigureWrapper from './ConfigureWrapper'
 
 export const getUUID = () => Math.random().toString().slice(2)
 
-const DynamicTreeNodeComponent: FC<{
+const TreeNode: FC<{
   node: DynamicTreeNode
   index: number
   indexPath: number[]
@@ -111,16 +111,42 @@ const DynamicTreeNodeComponent: FC<{
 
   const active = activeId === node.id
 
-  return (
-    <div className={`tree-node-wrapper ${active ? 'active' : ''}`} onClick={handleActive}>
-      <Comp key={node.id} {...compProps} />
-      {active && (
-        <ConfigureWrapper {...compProps}>
-          <CompConfigure key={node.id} {...compProps} />
-        </ConfigureWrapper>
-      )}
-    </div>
+  const comp = (
+    <Comp {...compProps}>
+      {node.children?.map((childNode, index) => (
+        <TreeNode
+          key={childNode.id}
+          node={childNode}
+          index={index}
+          indexPath={[...indexPath, index]}
+          setTree={setTree}
+          activeId={activeId}
+          setActiveId={setActiveId}
+          panel={panel}
+          mode={mode}
+        />
+      ))}
+    </Comp>
   )
+
+  if (mode === Mode.RUNTIME) {
+    return <div className="tree-node-wrapper">{comp}</div>
+  }
+
+  if (mode === Mode.CREATIVE) {
+    return (
+      <div className={`tree-node-wrapper ${active ? 'active' : ''}`} onClick={handleActive}>
+        {comp}
+        {active && (
+          <ConfigureWrapper {...compProps}>
+            <CompConfigure {...compProps} />
+          </ConfigureWrapper>
+        )}
+      </div>
+    )
+  }
+
+  return null
 }
 
-export default DynamicTreeNodeComponent
+export default TreeNode

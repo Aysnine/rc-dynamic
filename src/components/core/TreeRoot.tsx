@@ -3,7 +3,7 @@ import { DynamicTreeNode, Mode, normalSortableOptions } from '..'
 import DynamicTreeNodeComponent from './TreeNode'
 import { ReactSortable } from 'react-sortablejs'
 
-const DynamicTreeRootComponent: FC<{
+const TreeRoot: FC<{
   tree: DynamicTreeNode[]
   setTree: React.Dispatch<React.SetStateAction<DynamicTreeNode[]>>
   activeId: string
@@ -11,29 +11,33 @@ const DynamicTreeRootComponent: FC<{
   mode: Mode
   panel: RefObject<HTMLDivElement>
 }> = ({ tree, setTree, activeId, setActiveId, mode, panel }) => {
-  return (
-    <ReactSortable
-      disabled={mode !== Mode.CREATIVE}
-      list={tree}
-      setList={setTree}
-      {...normalSortableOptions}
-      className="tree-root"
-    >
-      {tree.map((node, index) => (
-        <DynamicTreeNodeComponent
-          key={node.id}
-          node={node}
-          index={index}
-          indexPath={[index]}
-          setTree={setTree}
-          activeId={activeId}
-          setActiveId={setActiveId}
-          mode={mode}
-          panel={panel}
-        />
-      ))}
-    </ReactSortable>
-  )
+  const children = tree.map((node, index) => (
+    <DynamicTreeNodeComponent
+      key={node.id}
+      node={node}
+      index={index}
+      indexPath={[index]}
+      setTree={setTree}
+      activeId={activeId}
+      setActiveId={setActiveId}
+      mode={mode}
+      panel={panel}
+    />
+  ))
+
+  if (mode === Mode.RUNTIME) {
+    return <div className="tree-root">{children}</div>
+  }
+
+  if (mode === Mode.CREATIVE) {
+    return (
+      <ReactSortable list={tree} setList={setTree} {...normalSortableOptions} className="tree-root">
+        {children}
+      </ReactSortable>
+    )
+  }
+
+  return null
 }
 
-export default DynamicTreeRootComponent
+export default TreeRoot

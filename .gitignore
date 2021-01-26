@@ -117,3 +117,6 @@ dist
 
 # dev file
 public/index.js
+
+# storybook build result
+storybook-static

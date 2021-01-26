@@ -18,7 +18,7 @@ jobs:
       run: yarn type
 
     - name: Check code
-      run: yarn lint
+      run: yarn lint:script
 
     - name: Build
       run: yarn build

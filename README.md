@@ -23,7 +23,7 @@ yarn serve
 yarn build
 
 # check code styles
-yarn lint
+yarn lint:script
 
 # check types
 yarn type

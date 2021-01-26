@@ -7,7 +7,7 @@
   "scripts": {
     "serve": "node bin/dev.js",
     "build": "node bin/build.js",
-    "lint": "eslint . --fix",
+    "lint:script": "eslint . --fix",
     "type": "tsc",
     "release": "standard-version",
     "storybook": "start-storybook -p 6006",

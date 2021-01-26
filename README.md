@@ -27,6 +27,15 @@ yarn lint
 
 # check types
 yarn type
+
+# show storybook
+yarn storybook
+
+# show storybook
+yarn storybook
+
+# build storybook
+yarn build-storybook
 ```
 
 ## Components

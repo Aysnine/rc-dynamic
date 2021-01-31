@@ -1,7 +1,6 @@
 const path = require('path')
 const fs = require('fs')
 const { build } = require('esbuild')
-const chokidar = require('chokidar')
 const liveServer = require('live-server')
 
 process.on('unhandledRejection', (error) => {
@@ -14,8 +13,17 @@ process.on('unhandledRejection', (error) => {
   fs.mkdirSync('dist')
   fs.copyFileSync('public/index.html', 'dist/index.html') // TODO support multiple files
 
+  liveServer.start({
+    // Opens the local server on start.
+    open: true,
+    // Uses `PORT=...` or 8080 as a fallback.
+    port: +process.env.PORT || 8080,
+    // Uses `public` as the local server folder.
+    root: 'dist',
+  })
+
   // `esbuild` bundler for JavaScript / TypeScript.
-  const builder = await build({
+  await build({
     // Bundles JavaScript.
     bundle: true,
     // Defines env variables for bundled JavaScript; here `process.env.NODE_ENV`
@@ -31,24 +39,10 @@ process.on('unhandledRejection', (error) => {
     outdir: 'dist',
     // React jsx runtime
     inject: [path.join(__dirname, './_shim.js')],
-  })
-  // `chokidar` watcher source changes.
-  chokidar
-    // Watches TypeScript and React TypeScript.
-    .watch('src/**/*.{ts,tsx,css}', {
-      interval: 0, // No delay
-    })
-    // Rebuilds esbuild (incrementally -- see `build.incremental`).
-    .on('all', () => {
-      builder.rebuild()
-    })
-  // `liveServer` local server for hot reload.
-  liveServer.start({
-    // Opens the local server on start.
-    open: true,
-    // Uses `PORT=...` or 8080 as a fallback.
-    port: +process.env.PORT || 8080,
-    // Uses `public` as the local server folder.
-    root: 'dist',
+    // Watch mode
+    watch: true,
+  }).then((result) => {
+    // Call "stop" on the result when you're done
+    result.stop()
   })
 })()

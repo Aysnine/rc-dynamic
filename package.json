@@ -27,7 +27,6 @@
     "@typescript-eslint/parser": "^4.14.1",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
-    "chokidar": "^3.5.1",
     "cz-conventional-changelog": "3.3.0",
     "esbuild": "^0.8.38",
     "eslint": "^7.19.0",

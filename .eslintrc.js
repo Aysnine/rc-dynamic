@@ -5,5 +5,5 @@ module.exports = {
     'prettier/prettier': 'warn',
     'react/react-in-jsx-scope': 'off',
   },
-  ignorePatterns: ['public/', 'dist/'],
+  ignorePatterns: ['public/', 'dist/', 'storybook-static/'],
 }

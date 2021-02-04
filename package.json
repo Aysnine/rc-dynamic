@@ -28,7 +28,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "cz-conventional-changelog": "3.3.0",
-    "esbuild": "^0.8.39",
+    "esbuild": "^0.8.40",
     "eslint": "^7.19.0",
     "eslint-config-react-app": "^6.0.0",
     "eslint-config-standard": "^16.0.2",

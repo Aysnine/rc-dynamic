@@ -1,8 +1,6 @@
 import { FC } from 'react'
-import { BaseProps } from '../../..'
-import { GaugeChartMeta } from '..'
 
-const GaugeChartConfigure: FC<BaseProps<GaugeChartMeta>> = () => {
+const GaugeChartConfigure: FC = () => {
   return <div>TODO: GaugeChartConfigure</div>
 }
 

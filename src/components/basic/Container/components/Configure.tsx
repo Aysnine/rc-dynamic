@@ -1,8 +1,9 @@
-import { FC, useCallback } from 'react'
-import { BaseProps } from '../../..'
-import { ContainerMeta } from '..'
+import { FC, useCallback, useContext } from 'react'
+import { TreeNodeContext } from 'src/components/core/TreeNode'
 
-const ContainerConfigure: FC<BaseProps<ContainerMeta>> = ({ meta, setMeta }) => {
+const ContainerConfigure: FC = () => {
+  const { meta, setMeta } = useContext(TreeNodeContext)
+
   const handleSetVertical = useCallback(() => {
     setMeta({ ...(meta ?? {}), direction: 'vertical' })
   }, [meta, setMeta])

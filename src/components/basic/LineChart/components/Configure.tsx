@@ -1,8 +1,6 @@
 import { FC } from 'react'
-import { BaseProps } from '../../..'
-import { LineChartMeta } from '..'
 
-const LineChartConfigure: FC<BaseProps<LineChartMeta>> = () => {
+const LineChartConfigure: FC = () => {
   return <div>TODO: LineChartConfigure</div>
 }
 

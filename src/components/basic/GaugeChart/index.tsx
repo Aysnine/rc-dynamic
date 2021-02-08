@@ -2,7 +2,6 @@ import { FC, useEffect, useLayoutEffect, useRef } from 'react'
 import { useEffectOnce, useMount, useWindowSize } from 'react-use'
 import * as echarts from 'echarts'
 import { EChartsOption } from 'echarts'
-import { BaseProps } from '../../'
 
 const defaultOption: EChartsOption = {
   series: [
@@ -40,11 +39,11 @@ const defaultOption: EChartsOption = {
   ],
 }
 
-export interface GaugeChartMeta {
+export interface GaugeChartProps {
   value?: string
 }
 
-const GaugeChart: FC<BaseProps<GaugeChartMeta>> = () => {
+const GaugeChart: FC<GaugeChartProps> = () => {
   const container = useRef<HTMLDivElement>(null)
   const chart = useRef<ReturnType<typeof echarts.init> | null>()
 

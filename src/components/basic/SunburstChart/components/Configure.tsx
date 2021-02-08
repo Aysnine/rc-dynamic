@@ -1,8 +1,6 @@
 import { FC } from 'react'
-import { BaseProps } from '../../..'
-import { SunburstMeta } from '..'
 
-const SunburstChartConfigure: FC<BaseProps<SunburstMeta>> = () => {
+const SunburstChartConfigure: FC = () => {
   return <div>TODO: SunburstChartConfigure</div>
 }
 

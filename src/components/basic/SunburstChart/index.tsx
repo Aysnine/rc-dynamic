@@ -1,14 +1,13 @@
 import { FC, useEffect, useLayoutEffect, useRef } from 'react'
 import { useEffectOnce, useMount, useWindowSize } from 'react-use'
 import * as echarts from 'echarts'
-import { BaseProps } from '../../'
 import { mockOption } from './mockData'
 
-export interface SunburstMeta {
+export interface Props {
   value?: string
 }
 
-const Sunburst: FC<BaseProps<SunburstMeta>> = () => {
+const Sunburst: FC<Props> = () => {
   const container = useRef<HTMLDivElement>(null)
   const chart = useRef<ReturnType<typeof echarts.init>>()
 

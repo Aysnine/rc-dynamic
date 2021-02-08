@@ -21,7 +21,7 @@ export const DynamicComponentMap = {
 
 export type ComponentKey = keyof typeof DynamicComponentMap
 
-export const ConfigureMap: Record<ComponentKey, FC<BaseProps>> = {
+export const ConfigureMap: Record<ComponentKey, FC> = {
   text: TextConfigure,
   container: ContainerConfigure,
   lineChart: LineChartConfigure,
@@ -45,7 +45,7 @@ export interface DynamicTreeNode<M = any> {
   filtered?: boolean
 }
 
-export interface BaseProps<M = any> {
+export interface TreeNodeProvideData<M = any> {
   node: DynamicTreeNode
   index: number
   indexPath: number[]

@@ -2,7 +2,6 @@ import { FC, useEffect, useLayoutEffect, useRef } from 'react'
 import { useEffectOnce, useMount, useWindowSize } from 'react-use'
 import * as echarts from 'echarts'
 import { EChartsOption } from 'echarts'
-import { BaseProps } from '../../'
 
 const defaultOption: EChartsOption = {
   title: {
@@ -24,11 +23,11 @@ const defaultOption: EChartsOption = {
   ],
 }
 
-export interface LineChartMeta {
+export interface LineChartProps {
   value?: string
 }
 
-const LineChart: FC<BaseProps<LineChartMeta>> = () => {
+const LineChart: FC<LineChartProps> = () => {
   const container = useRef<HTMLDivElement>(null)
   const chart = useRef<ReturnType<typeof echarts.init> | null>()
 

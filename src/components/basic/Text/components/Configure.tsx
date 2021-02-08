@@ -1,8 +1,10 @@
-import { ChangeEvent, FC, useCallback } from 'react'
-import { BaseProps } from '../../..'
-import { defaults, TextMeta, TextSize } from '..'
+import { ChangeEvent, FC, useCallback, useContext } from 'react'
+import { defaults, TextSize } from '..'
+import { TreeNodeContext } from 'src/components/core/TreeNode'
 
-const TextConfigure: FC<BaseProps<TextMeta>> = ({ meta, setMeta, applyMeta }) => {
+const TextConfigure: FC = () => {
+  const { meta, setMeta, applyMeta } = useContext(TreeNodeContext)
+
   const value = meta?.value ?? defaults.value
   const size = meta?.size ?? defaults.size
 

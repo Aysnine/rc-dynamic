@@ -1,12 +1,15 @@
-import { FC } from 'react'
+import { FC, useContext } from 'react'
 import { ReactSortable } from 'react-sortablejs'
-import { BaseProps, Mode, normalSortableOptions } from '../../'
+import { TreeNodeContext } from 'src/components/core/TreeNode'
+import { Mode, normalSortableOptions } from '../../'
 
-export interface ContainerMeta {
+export interface ContainerProps {
   direction?: 'vertical' | 'horizontal'
 }
 
-const Container: FC<BaseProps<ContainerMeta>> = ({ node, setCurrentTree, meta, mode, children }) => {
+const Container: FC<ContainerProps> = ({ children }) => {
+  const { node, setCurrentTree, meta, mode } = useContext(TreeNodeContext)
+
   const direction = meta?.direction ?? 'vertical'
   const wrapperClassName = `container ${direction}`
 

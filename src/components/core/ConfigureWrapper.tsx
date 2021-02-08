@@ -1,8 +1,9 @@
-import { FC } from 'react'
+import { FC, useContext } from 'react'
 import { createPortal } from 'react-dom'
-import { BaseProps } from '..'
+import { TreeNodeContext } from './TreeNode'
 
-const ConfigureWrapper: FC<BaseProps> = ({ node, panel, remove, duplicate, inactive, children }) => {
+const ConfigureWrapper: FC = ({ children }) => {
+  const { node, panel, remove, duplicate, inactive } = useContext(TreeNodeContext)
   if (!panel.current) return null
 
   return createPortal(

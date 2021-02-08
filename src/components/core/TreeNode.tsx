@@ -1,11 +1,12 @@
-import { Dispatch, FC, RefObject, SetStateAction, useCallback } from 'react'
+import { createContext, Dispatch, FC, RefObject, SetStateAction, useCallback } from 'react'
 import { Store } from 'react-sortablejs'
 import { useUpdate } from 'react-use'
 import { clone } from 'ramda'
 import { ConfigureMap, DynamicComponentMap, Mode } from '..'
-import { BaseProps, DynamicTreeNode } from '..'
+import { TreeNodeProvideData, DynamicTreeNode } from '..'
 import ConfigureWrapper from './ConfigureWrapper'
 
+export const TreeNodeContext = createContext<TreeNodeProvideData>({} as TreeNodeProvideData)
 export const getUUID = () => Math.random().toString().slice(2)
 
 const TreeNode: FC<{
@@ -18,8 +19,8 @@ const TreeNode: FC<{
   panel: RefObject<HTMLDivElement>
   mode: Mode
 }> = ({ node, index, setTree, indexPath, activeId, setActiveId, mode, panel }) => {
-  const Comp: FC<BaseProps> = DynamicComponentMap[node.component]
-  const CompConfigure: FC<BaseProps> = ConfigureMap[node.component]
+  const Comp = DynamicComponentMap[node.component]
+  const CompConfigure = ConfigureMap[node.component]
 
   const setCurrentTree: (newState: DynamicTreeNode[], sortable: any, store: Store) => void = useCallback(
     (currentNodes) => {
@@ -82,7 +83,7 @@ const TreeNode: FC<{
     })
   }, [indexPath, setTree])
 
-  const compProps: BaseProps = {
+  const provideData: TreeNodeProvideData = {
     node,
     index,
     setTree,
@@ -112,21 +113,23 @@ const TreeNode: FC<{
   const active = activeId === node.id
 
   const comp = (
-    <Comp {...compProps}>
-      {node.children?.map((childNode, index) => (
-        <TreeNode
-          key={childNode.id}
-          node={childNode}
-          index={index}
-          indexPath={[...indexPath, index]}
-          setTree={setTree}
-          activeId={activeId}
-          setActiveId={setActiveId}
-          panel={panel}
-          mode={mode}
-        />
-      ))}
-    </Comp>
+    <TreeNodeContext.Provider value={provideData}>
+      <Comp>
+        {node.children?.map((childNode, index) => (
+          <TreeNode
+            key={childNode.id}
+            node={childNode}
+            index={index}
+            indexPath={[...indexPath, index]}
+            setTree={setTree}
+            activeId={activeId}
+            setActiveId={setActiveId}
+            panel={panel}
+            mode={mode}
+          />
+        ))}
+      </Comp>
+    </TreeNodeContext.Provider>
   )
 
   if (mode === Mode.RUNTIME) {
@@ -138,9 +141,11 @@ const TreeNode: FC<{
       <div className={`tree-node-wrapper ${active ? 'active' : ''}`} onClick={handleActive}>
         {comp}
         {active && (
-          <ConfigureWrapper {...compProps}>
-            <CompConfigure {...compProps} />
-          </ConfigureWrapper>
+          <TreeNodeContext.Provider value={provideData}>
+            <ConfigureWrapper>
+              <CompConfigure />
+            </ConfigureWrapper>
+          </TreeNodeContext.Provider>
         )}
       </div>
     )

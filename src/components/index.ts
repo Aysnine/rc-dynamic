@@ -1,4 +1,4 @@
-import { Dispatch, FC, RefObject, SetStateAction } from 'react'
+import { Dispatch, FC, RefObject, SetStateAction, useState } from 'react'
 import { Store } from 'react-sortablejs'
 import Container from './basic/Container'
 import ContainerConfigure from './basic/Container/components/Configure'
@@ -28,6 +28,9 @@ export const ConfigureMap: Record<ComponentKey, FC<BaseProps>> = {
   gaugeChart: GaugeChartConfigure,
   sunburstChart: SunburstChartConfigure,
 }
+
+export const HookMap: Record<string, Function> = { useState }
+export type HookMapKey = keyof typeof HookMap
 
 export interface DynamicTreeNode<M = any> {
   id: string

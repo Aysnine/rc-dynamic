@@ -19,6 +19,7 @@
     "@storybook/addon-essentials": "^6.1.17",
     "@storybook/addon-links": "^6.1.17",
     "@storybook/react": "^6.1.17",
+    "@types/lodash.get": "^4.4.6",
     "@types/ramda": "^0.27.37",
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
@@ -51,6 +52,7 @@
   },
   "dependencies": {
     "echarts": "^5.0.2",
+    "lodash.get": "^4.4.2",
     "ramda": "^0.27.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

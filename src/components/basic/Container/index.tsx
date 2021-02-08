@@ -10,7 +10,7 @@ export interface ContainerProps {
 const Container: FC<ContainerProps> = ({ children }) => {
   const { node, setCurrentTree, meta, mode } = useContext(TreeNodeContext)
 
-  const direction = meta?.direction ?? 'vertical'
+  const direction = meta?.raw?.direction ?? 'vertical'
   const wrapperClassName = `container ${direction}`
 
   if (mode === Mode.RUNTIME) {

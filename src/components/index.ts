@@ -20,10 +20,10 @@ export type ComponentKey = keyof typeof DynamicComponentMap
 export const HookMap: Record<string, Function> = { useState }
 export type HookMapKey = keyof typeof HookMap
 
-export interface DynamicTreeNode<M = any> {
+export interface DynamicTreeNode {
   id: string
   component: ComponentKey
-  meta?: M
+  meta?: TreeNodeMeta
   children?: DynamicTreeNode[]
 
   // ! by sortable runtime, need clean
@@ -34,7 +34,8 @@ export interface DynamicTreeNode<M = any> {
 }
 
 export interface TreeNodeMeta {
-  hookCompose: HookComposeMeta
+  raw?: any
+  hookCompose?: HookComposeMeta
 }
 
 export interface TreeNodeProvideData {

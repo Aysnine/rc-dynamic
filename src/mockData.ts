@@ -1,17 +1,17 @@
 import { DynamicTreeNode } from './components'
 
 export const mockTree: DynamicTreeNode[] = [
-  { id: '1', component: 'text', meta: { value: 'header', size: '1.5em' } },
+  { id: '1', component: 'text', meta: { raw: { value: 'header', size: '1.5em' } } },
   {
     id: '2',
     component: 'container',
-    meta: { direction: 'horizontal' },
+    meta: { raw: { direction: 'horizontal' } },
     children: [
       { id: '3', component: 'gaugeChart' },
       {
         id: '4',
         component: 'text',
-        meta: { size: '1.5em', value: 'Hello DnD' },
+        meta: { raw: { size: '1.5em', value: 'Hello DnD' } },
       },
       { id: '5', component: 'gaugeChart' },
     ],
@@ -23,7 +23,7 @@ export const mockTree: DynamicTreeNode[] = [
       { id: '16', component: 'lineChart' },
       { id: '7', component: 'sunburstChart' },
     ],
-    meta: { direction: 'horizontal' },
+    meta: { raw: { direction: 'horizontal' } },
   },
   {
     id: '17',
@@ -39,14 +39,14 @@ export const mockTree: DynamicTreeNode[] = [
           {
             id: '12',
             component: 'text',
-            meta: { value: '' },
+            meta: { raw: { value: '' } },
           },
           { id: '13', component: 'text' },
           { id: '14', component: 'text' },
         ],
       },
     ],
-    meta: { direction: 'horizontal' },
+    meta: { raw: { direction: 'horizontal' } },
   },
-  { id: '15', component: 'text', meta: { value: 'footer' } },
+  { id: '15', component: 'text', meta: { raw: { value: 'footer' } } },
 ]

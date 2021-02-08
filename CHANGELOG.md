@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/Aysnine/rc-dynamic/compare/v0.0.6...v0.0.7) (2021-02-08)
+
+
+### Features
+
+* ready for hook compose config ([7a32a30](https://github.com/Aysnine/rc-dynamic/commit/7a32a30fbaddfc2d57edb9796689a65eccf4c805))
+
+
+### Bug Fixes
+
+* type for tree node meta ([cdec719](https://github.com/Aysnine/rc-dynamic/commit/cdec7196c0dbaedf7034d4d5b095fee8f6bb84f4))
+
 ### [0.0.6](https://github.com/Aysnine/rc-dynamic/compare/v0.0.6-2...v0.0.6) (2021-02-08)
 
 ### [0.0.6-2](https://github.com/Aysnine/rc-dynamic/compare/v0.0.6-1...v0.0.6-2) (2021-02-01)

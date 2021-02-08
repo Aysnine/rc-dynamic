@@ -60,6 +60,7 @@ yarn build-storybook
 ## Refer
 
 - 🌟 https://codesandbox.io/s/react-sortable-js-nested-tu8nn
+- 🌟 https://codesandbox.io/s/hook-compose-component-hrglp?file=/src/App.tsx
 - https://www.storyblok.com/tp/react-dynamic-component-from-json
 - https://github.com/zaydek/esbuild-hot-reload
 - https://techmusings.dev/

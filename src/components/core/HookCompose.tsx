@@ -14,7 +14,7 @@ const arrayMapper = (mapping: ArrayMapping, map: Record<string, any>): any[] => 
 const objectMapper = (mapping: ObjectMapping, map: Record<string, any>): any =>
   Object.entries(mapping).reduce((x, [key, value]) => ({ ...x, [key]: resolveValue(value, map) }), {})
 
-interface HookComposeMeta {
+export interface HookComposeMeta {
   hooks: Array<{ name: string; use: HookMapKey; args: ArrayMapping }>
   props: ObjectMapping
 }

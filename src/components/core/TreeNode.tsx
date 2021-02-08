@@ -2,12 +2,14 @@ import { createContext, Dispatch, FC, RefObject, SetStateAction, useCallback } f
 import { Store } from 'react-sortablejs'
 import { useUpdate } from 'react-use'
 import { clone } from 'ramda'
-import { ConfigureMap, DynamicComponentMap, Mode } from '..'
+import { DynamicComponentMap, Mode } from '..'
 import { TreeNodeProvideData, DynamicTreeNode } from '..'
-import ConfigureWrapper from './ConfigureWrapper'
+import Configure from './Configure'
+import HookCompose from './HookCompose'
+import { getUUID } from '../utils'
 
+const defaultHookComposeMeta = { hooks: [], props: {} }
 export const TreeNodeContext = createContext<TreeNodeProvideData>({} as TreeNodeProvideData)
-export const getUUID = () => Math.random().toString().slice(2)
 
 const TreeNode: FC<{
   node: DynamicTreeNode
@@ -19,9 +21,6 @@ const TreeNode: FC<{
   panel: RefObject<HTMLDivElement>
   mode: Mode
 }> = ({ node, index, setTree, indexPath, activeId, setActiveId, mode, panel }) => {
-  const Comp = DynamicComponentMap[node.component]
-  const CompConfigure = ConfigureMap[node.component]
-
   const setCurrentTree: (newState: DynamicTreeNode[], sortable: any, store: Store) => void = useCallback(
     (currentNodes) => {
       setTree((sourceNodes) => {
@@ -110,48 +109,37 @@ const TreeNode: FC<{
     [node.id, setActiveId]
   )
 
-  const active = activeId === node.id
+  const Comp = DynamicComponentMap[node.component]
 
-  const comp = (
-    <TreeNodeContext.Provider value={provideData}>
-      <Comp>
-        {node.children?.map((childNode, index) => (
-          <TreeNode
-            key={childNode.id}
-            node={childNode}
-            index={index}
-            indexPath={[...indexPath, index]}
-            setTree={setTree}
-            activeId={activeId}
-            setActiveId={setActiveId}
-            panel={panel}
-            mode={mode}
-          />
-        ))}
-      </Comp>
-    </TreeNodeContext.Provider>
+  return (
+    <div
+      className={`tree-node-wrapper ${mode === Mode.CREATIVE && activeId === node.id ? 'active' : ''}`}
+      onClick={mode === Mode.CREATIVE ? handleActive : undefined}
+    >
+      <TreeNodeContext.Provider value={provideData}>
+        <HookCompose {...(provideData.meta?.hookCompose || defaultHookComposeMeta)}>
+          {(props) => (
+            <Comp {...props}>
+              {node.children?.map((childNode, index) => (
+                <TreeNode
+                  key={childNode.id}
+                  node={childNode}
+                  index={index}
+                  indexPath={[...indexPath, index]}
+                  setTree={setTree}
+                  activeId={activeId}
+                  setActiveId={setActiveId}
+                  panel={panel}
+                  mode={mode}
+                />
+              ))}
+            </Comp>
+          )}
+        </HookCompose>
+        <Configure />
+      </TreeNodeContext.Provider>
+    </div>
   )
-
-  if (mode === Mode.RUNTIME) {
-    return <div className="tree-node-wrapper">{comp}</div>
-  }
-
-  if (mode === Mode.CREATIVE) {
-    return (
-      <div className={`tree-node-wrapper ${active ? 'active' : ''}`} onClick={handleActive}>
-        {comp}
-        {active && (
-          <TreeNodeContext.Provider value={provideData}>
-            <ConfigureWrapper>
-              <CompConfigure />
-            </ConfigureWrapper>
-          </TreeNodeContext.Provider>
-        )}
-      </div>
-    )
-  }
-
-  return null
 }
 
 export default TreeNode

@@ -3,10 +3,10 @@ import { useLocalStorage, useUpdate } from 'react-use'
 import { DynamicTreeNode, Mode } from './components'
 import MaterialPanel from './components/core/MaterialPanel'
 import TreeRoot from './components/core/TreeRoot'
-import { complexTree } from './mockData'
+import { mockTree } from './mockData'
 import { version } from '../package.json'
 
-const defaultTree = complexTree
+const defaultTree = mockTree
 const defaultActiveId = '4'
 
 const App = () => {

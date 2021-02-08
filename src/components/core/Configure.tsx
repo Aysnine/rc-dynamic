@@ -1,18 +1,14 @@
 import { FC, useContext } from 'react'
 import { createPortal } from 'react-dom'
+import { eventBoundary } from '../utils'
 import { TreeNodeContext } from './TreeNode'
 
-const ConfigureWrapper: FC = ({ children }) => {
-  const { node, panel, remove, duplicate, inactive } = useContext(TreeNodeContext)
-  if (!panel.current) return null
+const Configure: FC = ({ children }) => {
+  const { node, panel, remove, duplicate, inactive, activeId } = useContext(TreeNodeContext)
+  if (!panel.current || node.id !== activeId) return null
 
   return createPortal(
-    <div
-      onClick={(event) => {
-        // ! https://github.com/facebook/react/issues/11387#issuecomment-355258340
-        event.stopPropagation()
-      }}
-    >
+    <div onClick={eventBoundary}>
       <div>
         <button onClick={inactive}>X</button>
         &nbsp; | &nbsp;
@@ -26,7 +22,7 @@ const ConfigureWrapper: FC = ({ children }) => {
         </b>
       </p>
       <p>config：</p>
-      <div className="config-wrapper">{children}</div>
+      <div className="config-wrapper">TODO</div>
       <p>meta：</p>
       <pre>{JSON.stringify(node.meta) || 'undefined'}</pre>
     </div>,
@@ -34,4 +30,4 @@ const ConfigureWrapper: FC = ({ children }) => {
   )
 }
 
-export default ConfigureWrapper
+export default Configure

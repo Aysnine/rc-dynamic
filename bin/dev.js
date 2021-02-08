@@ -41,8 +41,5 @@ process.on('unhandledRejection', (error) => {
     inject: [path.join(__dirname, './_shim.js')],
     // Watch mode
     watch: true,
-  }).then((result) => {
-    // Call "stop" on the result when you're done
-    result.stop()
   })
 })()

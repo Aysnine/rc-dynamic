@@ -9,16 +9,9 @@
     "build": "node bin/build.js",
     "lint:script": "eslint . --fix",
     "type": "tsc",
-    "release": "standard-version",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "release": "standard-version"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.8",
-    "@storybook/addon-actions": "^6.1.21",
-    "@storybook/addon-essentials": "^6.1.21",
-    "@storybook/addon-links": "^6.1.21",
-    "@storybook/react": "^6.1.21",
     "@types/lodash.get": "^4.4.6",
     "@types/ramda": "^0.27.38",
     "@types/react": "^17.0.3",
@@ -27,7 +20,6 @@
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
     "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.2.2",
     "cz-conventional-changelog": "3.3.0",
     "esbuild": "^0.8.56",
     "eslint": "^7.21.0",

@@ -4,8 +4,6 @@ React component Drag and Drop and Config Driven UI demo.
 
 Preview here 👉 https://d2.pub/rc-dynamic/preview/
 
-Storybook here 👉 https://d2.pub/rc-dynamic/storybook/
-
 ## Main integrations
 
 - [esbuild](https://esbuild.github.io/)
@@ -29,15 +27,6 @@ yarn lint:script
 
 # check types
 yarn type
-
-# show storybook
-yarn storybook
-
-# show storybook
-yarn storybook
-
-# build storybook
-yarn build-storybook
 ```
 
 ## Components

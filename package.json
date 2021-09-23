@@ -12,6 +12,7 @@
     "release": "standard-version"
   },
   "devDependencies": {
+    "@types/css-modules": "^1.0.2",
     "@types/lodash.get": "^4.4.6",
     "@types/ramda": "^0.27.44",
     "@types/react": "^17.0.24",
@@ -22,6 +23,7 @@
     "babel-eslint": "^10.1.0",
     "cz-conventional-changelog": "3.3.0",
     "esbuild": "^0.13.1",
+    "esbuild-css-modules-plugin": "^2.0.9",
     "eslint": "^7.32.0",
     "eslint-config-react-app": "^6.0.0",
     "eslint-config-standard": "^16.0.3",

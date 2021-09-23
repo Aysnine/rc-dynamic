@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const gzipme = require('gzipme')
 const { build } = require('esbuild')
+const cssModulesPlugin = require('esbuild-css-modules-plugin')
 
 process.on('unhandledRejection', (error) => {
   console.error('unhandledRejection:', error)
@@ -28,6 +29,13 @@ process.on('unhandledRejection', (error) => {
     outdir: 'dist',
     // React jsx runtime
     inject: [path.join(__dirname, './_shim.js')],
+    // Plugins
+    plugins: [
+      cssModulesPlugin({
+        inject: false,
+        v2: true,
+      }),
+    ],
   })
 
   // create gz file

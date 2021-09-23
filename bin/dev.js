@@ -2,6 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const { build } = require('esbuild')
 const liveServer = require('live-server')
+const cssModulesPlugin = require('esbuild-css-modules-plugin')
 
 process.on('unhandledRejection', (error) => {
   console.error('unhandledRejection:', error)
@@ -41,5 +42,12 @@ process.on('unhandledRejection', (error) => {
     inject: [path.join(__dirname, './_shim.js')],
     // Watch mode
     watch: true,
+    // Plugins
+    plugins: [
+      cssModulesPlugin({
+        inject: false,
+        v2: true,
+      }),
+    ],
   })
 })()

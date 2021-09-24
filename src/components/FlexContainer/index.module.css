@@ -1,0 +1,72 @@
+.container {
+  /* NOTING */
+}
+
+.flexContainer {
+  display: flex;
+}
+
+.horizontal > .flexContainer {
+  flex-direction: row;
+}
+
+.vertical > .flexContainer {
+  flex-direction: column;
+}
+
+.flexItem {
+  flex: 1;
+
+  /* effect */
+  outline-offset: -1px;
+  outline: 0 dashed transparent;
+  transition-property: outline, padding, margin;
+  transition-duration: .28s;
+}
+
+.root > .flexContainer > .flexItem {
+  flex: unset;
+}
+
+.flexItemGhost,
+:global(.sortable-chosen) {
+  user-select: none;
+  background-color: #e6f4fa;
+
+  /* effect */
+  transition: background-color .28s;
+}
+
+.nestedItemContainer {
+  /* NOTING */
+}
+
+.handle {
+  /* NOTING */
+}
+
+.editMode.root > .flexContainer {
+  min-height: 300px;
+}
+
+.editMode.root.empty {
+  outline: 1px dashed #2196f3;
+}
+
+.editMode > .flexContainer > .flexItem {
+  padding: 5px;
+  margin: 5px;
+
+  outline: 1px solid #2196f3;
+}
+
+.editMode > .flexContainer > .nestedItemContainer {
+  outline-style: dashed;
+  min-height: 15px;
+  min-width: 15px;
+}
+
+.editMode > .flexContainer > .active {
+  background-color: #e6e6fa;
+  outline-color: #ab47bc;
+}

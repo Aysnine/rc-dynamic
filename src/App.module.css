@@ -1,0 +1,13 @@
+.app {
+  display: flex;
+  width: 100%;
+}
+
+.content {
+  flex: 1;
+}
+
+.panel {
+  width: 210px;
+  margin-right: 10px;
+}

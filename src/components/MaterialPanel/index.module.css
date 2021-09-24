@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  /* only edit */
+  padding: 5px;
+}
+
+.item {
+  padding: 5px;
+
+  background-color: #e6f4fa;
+  margin: 5px;
+  outline-offset: -1px;
+  outline: 1px solid #2196f3;
+}
+
+.handle {
+  /* NOTHING */
+}
+
+/* Other */
+
+.divider {
+  height: 1px;
+  background-color: #2196f3;
+}
+
+.controls {
+  margin: 5px 0;
+  padding: 5px 10px;
+}

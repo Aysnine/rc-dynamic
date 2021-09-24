@@ -1,93 +1,83 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { useLocalStorage, useUpdate } from 'react-use'
-import { DynamicTreeNode, Mode } from './components'
-import MaterialPanel from './components/core/MaterialPanel'
-import TreeRoot from './components/core/TreeRoot'
-import { mockTree } from './mockData'
-import { version } from '../package.json'
+import { useMemo, useState } from 'react'
+import styles from './App.module.css'
+import DynamicRoot from './components/core/DynamicRoot'
+import MaterialPanel from './components/MaterialPanel'
+import { DynamicMode } from './constants'
+import { DynamicRootMeta } from './types'
+import { indexRootMeta } from './utils'
 
-const defaultTree = mockTree
-const defaultActiveId = '4'
+const mockMetaTree: DynamicRootMeta = {
+  version: '0',
+  children: [
+    {
+      component: 'FlexContainer',
+      config: {
+        root: true,
+      },
+      children: [
+        {
+          component: 'FlexContainer',
+          children: [],
+        },
+        {
+          component: 'FlexContainer',
+          children: [
+            {
+              component: 'Text',
+              config: {
+                content: 'Text A',
+              },
+            },
+          ],
+        },
+        {
+          component: 'FlexContainer',
+          children: [
+            {
+              component: 'Text',
+              config: {
+                content: 'Text B',
+              },
+            },
+            {
+              component: 'Text',
+              config: {
+                content: 'Text C',
+              },
+            },
+            {
+              component: 'Text',
+              config: {
+                content: 'Text D',
+              },
+            },
+          ],
+        },
+      ],
+    },
+  ],
+}
 
 const App = () => {
-  const [mode, setMode] = useState<Mode>(Mode.CREATIVE)
-
-  const [$tree = [], $setTree] = useLocalStorage<DynamicTreeNode[]>(version + '__tree', defaultTree)
-  const [$activeId = '', $setActiveId] = useLocalStorage<string>(version + '__activeId', defaultActiveId)
-
-  const [tree, setTree] = useState<DynamicTreeNode[]>($tree)
-  const [activeId, setActiveId] = useState<string>($activeId)
-
-  useEffect(() => {
-    $setTree(tree)
-    $setActiveId(activeId)
-  }, [tree, activeId, $setTree, $setActiveId])
-
-  const handleResetDefault = useCallback(() => {
-    setTree(defaultTree)
-    setActiveId(defaultActiveId)
-  }, [setActiveId, setTree])
-
-  const handleClear = useCallback(() => {
-    setTree([])
-    setActiveId('')
-  }, [setActiveId, setTree])
-
-  const handleToRuntimeMode = useCallback(() => {
-    setMode(Mode.RUNTIME)
-  }, [])
-
-  const handleToCreativeMode = useCallback(() => {
-    setMode(Mode.CREATIVE)
-  }, [])
-
-  // ! force render for portal
-  const panel = useRef<HTMLDivElement>(null)
-  const update = useUpdate()
-  useEffect(() => {
-    update()
-  }, [activeId, update])
+  const indexedMetaTree = useMemo(() => indexRootMeta(mockMetaTree), [])
+  const [metaTree, setMetaTree] = useState<DynamicRootMeta>(indexedMetaTree)
+  const [mode, setMode] = useState(DynamicMode.CREATIVE)
 
   return (
-    <div className={`workspace mode-${mode}`}>
-      {mode === Mode.CREATIVE && (
-        <div className="material-panel">
-          <div>
-            <button onClick={handleClear}>clear</button>
-            &nbsp;
-            <button onClick={handleResetDefault}>reset default</button>
-            &nbsp;
-            <button onClick={handleToRuntimeMode}>M:R</button>
-          </div>
-          <p>
-            <b>Components</b>
-          </p>
-          <MaterialPanel />
-        </div>
-      )}
-      <div className="view-container">
-        <TreeRoot
-          tree={tree}
-          setTree={setTree}
-          activeId={activeId}
-          setActiveId={setActiveId}
-          panel={panel}
+    <div className={styles.app}>
+      <div className={styles.panel}>
+        <MaterialPanel mode={mode} setMode={setMode} />
+      </div>
+      <div className={styles.content}>
+        <DynamicRoot
           mode={mode}
+          value={metaTree}
+          onChange={(newMeta) => {
+            setMetaTree(newMeta)
+            // console.log('x', newMeta)
+          }}
         />
       </div>
-      {mode === Mode.CREATIVE ? (
-        activeId ? (
-          <div className="active-panel">
-            <div ref={panel}></div>
-          </div>
-        ) : (
-          <div className="active-panel-placeholder"></div>
-        )
-      ) : (
-        <div className="runtime-helper">
-          <button onClick={handleToCreativeMode}>M:C</button>
-        </div>
-      )}
     </div>
   )
 }

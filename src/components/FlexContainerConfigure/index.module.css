@@ -1,0 +1,27 @@
+.container {
+  position: relative;
+}
+
+.configure {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  height: 16px;
+  min-width: 16px;
+}
+
+.action {
+  height: 16px;
+  overflow: hidden;
+  color: white;
+  background-color: #ab47bc;
+  cursor: pointer;
+  user-select: none;
+  padding: 0 4px;
+  text-align: center;
+  font-size: 12px;
+  float: right;
+  margin-left: 1px;
+  line-height: 16px;
+  text-transform: uppercase;
+}

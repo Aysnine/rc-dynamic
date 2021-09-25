@@ -3,60 +3,9 @@ import styles from './App.module.css'
 import DynamicRoot from './components/core/DynamicRoot'
 import MaterialPanel from './components/MaterialPanel'
 import { DynamicMode } from './constants'
+import { mockMetaTree } from './mockData'
 import { DynamicRootMeta } from './types'
 import { indexRootMeta } from './utils'
-
-const mockMetaTree: DynamicRootMeta = {
-  version: '0',
-  children: [
-    {
-      component: 'FlexContainer',
-      config: {
-        root: true,
-      },
-      children: [
-        {
-          component: 'FlexContainer',
-          children: [],
-        },
-        {
-          component: 'FlexContainer',
-          children: [
-            {
-              component: 'Text',
-              config: {
-                content: 'Text A',
-              },
-            },
-          ],
-        },
-        {
-          component: 'FlexContainer',
-          children: [
-            {
-              component: 'Text',
-              config: {
-                content: 'Text B',
-              },
-            },
-            {
-              component: 'Text',
-              config: {
-                content: 'Text C',
-              },
-            },
-            {
-              component: 'Text',
-              config: {
-                content: 'Text D',
-              },
-            },
-          ],
-        },
-      ],
-    },
-  ],
-}
 
 const App = () => {
   const indexedMetaTree = useMemo(() => indexRootMeta(mockMetaTree), [])
@@ -74,7 +23,7 @@ const App = () => {
           value={metaTree}
           onChange={(newMeta) => {
             setMetaTree(newMeta)
-            // console.log('x', newMeta)
+            console.log(newMeta)
           }}
         />
       </div>

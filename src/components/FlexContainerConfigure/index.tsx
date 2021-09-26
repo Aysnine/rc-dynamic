@@ -7,6 +7,8 @@ import styles from './index.module.css'
 
 export interface FlexContainerConfig {
   direction?: 'vertical' | 'horizontal'
+  root?: boolean
+  fixedNested?: boolean
 }
 
 const FlexContainerConfigure: React.FC<ConfigureProps<FlexContainerConfig>> = ({ children }) => {
@@ -14,9 +16,9 @@ const FlexContainerConfigure: React.FC<ConfigureProps<FlexContainerConfig>> = ({
 
   const props = useMemo<FlexContainerProps>(() => {
     const config = nodeContext.meta?.config as FlexContainerConfig | undefined
-    const { direction = 'vertical' } = config || {}
+    const { direction = 'vertical', root = false, fixedNested = false } = config || {}
 
-    return { direction }
+    return { direction, root, fixedNested }
   }, [nodeContext.meta?.config])
 
   return (
@@ -29,11 +31,8 @@ const FlexContainerConfigure: React.FC<ConfigureProps<FlexContainerConfig>> = ({
             event.stopPropagation()
           }}
         >
-          <div className={styles.action} onClick={() => nodeContext.setActive(false)}>
-            x
-          </div>
           <div className={styles.action} onClick={() => nodeContext.remove()}>
-            del
+            x
           </div>
           {nodeContext.meta?.children?.length ? (
             <div className={styles.action} onClick={() => nodeContext.repeat()}>

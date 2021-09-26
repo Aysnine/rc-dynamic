@@ -111,7 +111,12 @@ const FlexContainer: React.FC<FlexContainerProps> = ({ root = false, direction =
                 if (indexPath.length === 1) return
 
                 event.stopPropagation()
-                rootContext.setActiveId(childId!)
+
+                if (isActive) {
+                  rootContext.setActiveId(null)
+                } else {
+                  rootContext.setActiveId(childId!)
+                }
               }}
             >
               <DynamicNode indexPath={indexPath} meta={child} />

@@ -19,11 +19,8 @@ const DefaultConfigure: React.FC<ConfigureProps<any>> = ({ children }) => {
             event.stopPropagation()
           }}
         >
-          <div className={styles.action} onClick={() => nodeContext.setActive(false)}>
-            X
-          </div>
           <div className={styles.action} onClick={() => nodeContext.remove()}>
-            del
+            x
           </div>
         </div>
       )}

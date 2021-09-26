@@ -8,7 +8,7 @@ import styles from './index.module.css'
 export interface FlexContainerConfig {
   direction?: 'vertical' | 'horizontal'
   root?: boolean
-  fixedNested?: boolean
+  fixedNestedChildren?: boolean
 }
 
 const FlexContainerConfigure: React.FC<ConfigureProps<FlexContainerConfig>> = ({ children }) => {
@@ -16,10 +16,25 @@ const FlexContainerConfigure: React.FC<ConfigureProps<FlexContainerConfig>> = ({
 
   const props = useMemo<FlexContainerProps>(() => {
     const config = nodeContext.meta?.config as FlexContainerConfig | undefined
-    const { direction = 'vertical', root = false, fixedNested = false } = config || {}
+    const { direction = 'vertical', root = false, fixedNestedChildren = false } = config || {}
 
-    return { direction, root, fixedNested }
+    return { direction, root, fixedNestedChildren }
   }, [nodeContext.meta?.config])
+
+  const hasChildren = useMemo(() => nodeContext.meta?.children?.length, [nodeContext?.meta?.children])
+
+  const canBeNested = useMemo(
+    () =>
+      nodeContext.meta?.children?.length &&
+      nodeContext.meta.children.length >= 2 &&
+      nodeContext.meta.children.every((i) => i.component === 'FlexContainer'),
+    [nodeContext?.meta?.children]
+  )
+
+  const parentFixed = useMemo(() => {
+    const parent = nodeContext.getParentMeta()
+    return parent?.component === 'FlexContainer' && parent?.config?.fixedNestedChildren
+  }, [nodeContext])
 
   return (
     <div className={styles.container}>
@@ -31,25 +46,43 @@ const FlexContainerConfigure: React.FC<ConfigureProps<FlexContainerConfig>> = ({
             event.stopPropagation()
           }}
         >
-          <div className={styles.action} onClick={() => nodeContext.remove()}>
-            x
-          </div>
-          {nodeContext.meta?.children?.length ? (
+          {!parentFixed ? (
+            <div className={styles.action} onClick={() => nodeContext.remove()}>
+              x
+            </div>
+          ) : null}
+          {hasChildren ? (
             <div className={styles.action} onClick={() => nodeContext.repeat()}>
               rep
             </div>
           ) : null}
-          {nodeContext.meta?.children?.length ? (
-            <div
-              className={styles.action}
-              onClick={() => {
-                nodeContext.updateConfig<FlexContainerConfig>((config) => {
-                  config.direction = props.direction === 'horizontal' ? 'vertical' : 'horizontal'
-                })
-              }}
-            >
-              dir:{props.direction!.slice(0, 1)}
-            </div>
+          {hasChildren ? (
+            <>
+              {canBeNested ? (
+                <div
+                  className={styles.action}
+                  onClick={() => {
+                    nodeContext.updateConfig<FlexContainerConfig>((config) => {
+                      config.fixedNestedChildren = !props.fixedNestedChildren
+                    })
+                  }}
+                >
+                  {props.fixedNestedChildren ? 'FXD:T' : 'FXD:F'}
+                </div>
+              ) : null}
+              {!props.fixedNestedChildren ? (
+                <div
+                  className={styles.action}
+                  onClick={() => {
+                    nodeContext.updateConfig<FlexContainerConfig>((config) => {
+                      config.direction = props.direction === 'horizontal' ? 'vertical' : 'horizontal'
+                    })
+                  }}
+                >
+                  dir:{props.direction!.slice(0, 1)}
+                </div>
+              ) : null}
+            </>
           ) : null}
         </div>
       )}

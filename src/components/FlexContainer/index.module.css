@@ -16,6 +16,7 @@
 
 .flexItem {
   flex: 1;
+  position: relative;
 
   /* effect */
   outline-offset: -1px;
@@ -69,4 +70,14 @@
 .editMode > .flexContainer > .active {
   background-color: #e6e6fa;
   outline-color: #ab47bc;
+}
+
+.editMode > .flexContainer > .nestedFixedItemContainer {
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+.editMode.fixed > .flexContainer > .flexItem {
+  outline-color: #2196f355;
 }

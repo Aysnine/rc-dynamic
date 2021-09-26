@@ -18,6 +18,7 @@ export const DynamicNodeContext = createContext<{
   remove: () => void
   repeat: () => void
   updateConfig: <Config>(callback: (config: Config) => void) => void
+  getParentMeta: () => DynamicNodeMeta | undefined
 }>({
   indexPath: [],
   isActive: false,
@@ -25,6 +26,7 @@ export const DynamicNodeContext = createContext<{
   remove: () => {},
   repeat: () => {},
   updateConfig: () => {},
+  getParentMeta: () => undefined,
 })
 
 const DynamicNode: React.FC<DynamicNodeProps> = ({ meta, indexPath }) => {
@@ -72,8 +74,14 @@ const DynamicNode: React.FC<DynamicNodeProps> = ({ meta, indexPath }) => {
     })
   }
 
+  const getParentMeta = (): DynamicNodeMeta | undefined => {
+    return findParentMeta(rootContext.meta!, indexPath)
+  }
+
   return (
-    <DynamicNodeContext.Provider value={{ meta, indexPath, isActive, setActive, remove, repeat, updateConfig }}>
+    <DynamicNodeContext.Provider
+      value={{ meta, indexPath, isActive, setActive, remove, repeat, updateConfig, getParentMeta }}
+    >
       <ComponentConfigure>
         {(props: unknown) => (
           <Component {...props}>{children?.length ? <DynamicChildren children={children} /> : null}</Component>

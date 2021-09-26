@@ -19,40 +19,84 @@ export const mockMetaTree: DynamicRootMeta = {
             { component: 'Text', config: { content: 'Text D' } },
             { component: 'Text', config: { content: 'Text C' } },
           ],
-
           config: { direction: 'horizontal' },
         },
         {
           component: 'FlexContainer',
-          config: { direction: 'row' },
-
+          config: { direction: 'row', fixedNestedChildren: true },
           children: [
             {
               component: 'FlexContainer',
-              config: { direction: 'vertical' },
-
+              config: { direction: 'vertical', fixedNestedChildren: true },
               children: [
+                { component: 'FlexContainer', config: { direction: 'column' } },
                 {
                   component: 'FlexContainer',
-                  config: { direction: 'column' },
-
-                  children: [
-                    { component: 'Text', config: { content: 'Hello' } },
-                    { component: 'Text', config: { content: '中文' } },
-                  ],
+                  config: { direction: 'vertical' },
+                  children: [{ component: 'Text', config: { content: 'Hello' } }],
                 },
-                { component: 'Text', config: { content: 'Hello' } },
-                { component: 'Text', config: { content: '中文' } },
+                {
+                  component: 'FlexContainer',
+                  config: { direction: 'vertical' },
+                  children: [{ component: 'Text', config: { content: 'Hello' } }],
+                },
+                {
+                  component: 'FlexContainer',
+                  config: { direction: 'vertical' },
+                  children: [{ component: 'Text', config: { content: 'Hello' } }],
+                },
+                {
+                  component: 'FlexContainer',
+                  config: { direction: 'vertical' },
+                  children: [{ component: 'Text', config: { content: 'Hello' } }],
+                },
+                {
+                  component: 'FlexContainer',
+                  config: { direction: 'vertical' },
+                  children: [{ component: 'Text', config: { content: 'Hello' } }],
+                },
+                {
+                  component: 'FlexContainer',
+                  config: { direction: 'vertical' },
+                  children: [{ component: 'Text', config: { content: 'Hello' } }],
+                },
               ],
             },
             {
               component: 'FlexContainer',
-              config: { direction: 'vertical' },
-
+              config: { direction: 'vertical', fixedNestedChildren: true },
               children: [
-                { component: 'FlexContainer', config: { direction: 'row' } },
                 { component: 'FlexContainer', config: { direction: 'column' } },
-                { component: 'Text', config: { content: 'Hello' } },
+                {
+                  component: 'FlexContainer',
+                  config: { direction: 'vertical' },
+                  children: [{ component: 'Text', config: { content: 'Hello' } }],
+                },
+                {
+                  component: 'FlexContainer',
+                  config: { direction: 'vertical' },
+                  children: [{ component: 'Text', config: { content: 'Hello' } }],
+                },
+                {
+                  component: 'FlexContainer',
+                  config: { direction: 'vertical' },
+                  children: [{ component: 'Text', config: { content: 'Hello' } }],
+                },
+                {
+                  component: 'FlexContainer',
+                  config: { direction: 'vertical' },
+                  children: [{ component: 'Text', config: { content: 'Hello' } }],
+                },
+                {
+                  component: 'FlexContainer',
+                  config: { direction: 'vertical' },
+                  children: [{ component: 'Text', config: { content: 'Hello' } }],
+                },
+                {
+                  component: 'FlexContainer',
+                  config: { direction: 'vertical' },
+                  children: [{ component: 'Text', config: { content: 'Hello' } }],
+                },
               ],
             },
           ],

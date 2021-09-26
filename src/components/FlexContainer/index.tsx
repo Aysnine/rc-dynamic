@@ -17,11 +17,16 @@ export interface SortableNodeMeta {
 }
 
 export interface FlexContainerProps {
-  root?: boolean
   direction?: 'vertical' | 'horizontal'
+  root?: boolean
+  fixedNestedChildren?: boolean
 }
 
-const FlexContainer: React.FC<FlexContainerProps> = ({ root = false, direction = 'vertical' }) => {
+const FlexContainer: React.FC<FlexContainerProps> = ({
+  direction = 'vertical',
+  root = false,
+  fixedNestedChildren = false,
+}) => {
   const rootContext = useContext(DynamicRootContext)
   const nodeContext = useContext(DynamicNodeContext)
 
@@ -67,28 +72,23 @@ const FlexContainer: React.FC<FlexContainerProps> = ({ root = false, direction =
     }
   }
 
-  // * for control draggable
-  const handleClassName = useMemo(
-    () => (rootContext.mode === DynamicMode.CREATIVE ? styles.handle : ''),
-    [rootContext.mode]
-  )
-
   return (
     <div
       className={classNames(styles.container, styles[direction], {
         [styles.root]: root,
         [styles.empty]: !nodeContext.meta?.children?.length,
         [styles.editMode]: rootContext.mode === DynamicMode.CREATIVE,
+        [styles.fixed]: fixedNestedChildren,
       })}
     >
       <ReactSortable<SortableNodeMeta>
-        handle={'.' + handleClassName}
+        handle={'.' + styles.handle}
         list={list}
         setList={setList}
         tag="div"
         animation={150}
-        swapThreshold={1}
-        group={sortableGroupName}
+        swapThreshold={0.5}
+        group={{ name: sortableGroupName, put: !fixedNestedChildren, pull: !fixedNestedChildren }}
         className={styles.flexContainer}
         ghostClass={styles.flexItemGhost}
         clone={clone}
@@ -100,12 +100,17 @@ const FlexContainer: React.FC<FlexContainerProps> = ({ root = false, direction =
           return (
             <div
               key={childId}
-              className={classNames(styles.flexItem, handleClassName, {
+              className={classNames(styles.flexItem, {
+                [styles.handle]: rootContext.mode === DynamicMode.CREATIVE && !fixedNestedChildren,
                 [styles.nestedItemContainer]: child.component === 'FlexContainer',
+                [styles.nestedFixedItemContainer]:
+                  child.component === 'FlexContainer' && child.config?.fixedNestedChildren,
                 [styles.active]: isActive,
               })}
               onClick={(event) => {
                 if (rootContext.mode !== DynamicMode.CREATIVE) return
+
+                if (fixedNestedChildren) return
 
                 // ! disable configure for root container
                 if (indexPath.length === 1) return

@@ -48,6 +48,7 @@
 
 .editMode.root > .flexContainer {
   min-height: 300px;
+  overflow: hidden;
 }
 
 .editMode.root.empty {

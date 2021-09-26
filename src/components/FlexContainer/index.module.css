@@ -55,6 +55,14 @@
   outline: 1px dashed #2196f3;
 }
 
+.editMode.container {
+  height: 100%;
+}
+
+.editMode > .flexContainer {
+  min-height: 100%;
+}
+
 .editMode > .flexContainer > .flexItem {
   padding: 5px;
   margin: 5px;

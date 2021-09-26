@@ -67,7 +67,7 @@ const FlexContainerConfigure: React.FC<ConfigureProps<FlexContainerConfig>> = ({
                     })
                   }}
                 >
-                  fxd
+                  frz
                 </div>
               ) : null}
               {!props.fixedNestedChildren ? (

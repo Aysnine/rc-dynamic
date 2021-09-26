@@ -7,101 +7,66 @@ export const mockMetaTree: DynamicRootMeta = {
       component: 'FlexContainer',
       config: { root: true },
       children: [
-        { component: 'FlexContainer', children: [] },
         {
           component: 'FlexContainer',
-          children: [{ component: 'Text', config: { content: 'Text A' } }],
-        },
-        {
-          component: 'FlexContainer',
+          config: { direction: 'vertical', fixedNestedChildren: true },
+          __dynamic_uid: '37',
           children: [
-            { component: 'Text', config: { content: 'Text B' } },
-            { component: 'Text', config: { content: 'Text D' } },
-            { component: 'Text', config: { content: 'Text C' } },
+            {
+              component: 'FlexContainer',
+              config: { direction: 'horizontal' },
+              __dynamic_uid: '38',
+              children: [{ component: 'Text', config: { content: 'Hello' }, __dynamic_uid: '41' }],
+            },
+            {
+              component: 'FlexContainer',
+              config: { direction: 'horizontal' },
+              __dynamic_uid: '39',
+              children: [
+                { component: 'Text', config: { content: 'Hello' }, __dynamic_uid: '43' },
+                { component: 'Text', config: { content: 'Hello' }, __dynamic_uid: '42' },
+              ],
+            },
+            {
+              component: 'FlexContainer',
+              config: { direction: 'horizontal', fixedNestedChildren: true },
+              __dynamic_uid: '40',
+              children: [
+                {
+                  component: 'FlexContainer',
+                  config: { direction: 'vertical' },
+                  __dynamic_uid: '52',
+                  children: [{ component: 'Text', config: { content: '中文' }, __dynamic_uid: '46' }],
+                },
+                {
+                  component: 'FlexContainer',
+                  config: { direction: 'vertical' },
+                  __dynamic_uid: '55',
+                  children: [{ component: 'Text', config: { content: '中文' }, __dynamic_uid: '56' }],
+                },
+                {
+                  component: 'FlexContainer',
+                  config: { direction: 'vertical' },
+                  __dynamic_uid: '53',
+                  children: [{ component: 'Text', config: { content: '中文' }, __dynamic_uid: '54' }],
+                },
+              ],
+            },
           ],
-          config: { direction: 'horizontal' },
         },
         {
           component: 'FlexContainer',
-          config: { direction: 'row', fixedNestedChildren: true },
+          config: { direction: 'horizontal' },
+          __dynamic_uid: '47',
           children: [
-            {
-              component: 'FlexContainer',
-              config: { direction: 'vertical', fixedNestedChildren: true },
-              children: [
-                { component: 'FlexContainer', config: { direction: 'column' } },
-                {
-                  component: 'FlexContainer',
-                  config: { direction: 'vertical' },
-                  children: [{ component: 'Text', config: { content: 'Hello' } }],
-                },
-                {
-                  component: 'FlexContainer',
-                  config: { direction: 'vertical' },
-                  children: [{ component: 'Text', config: { content: 'Hello' } }],
-                },
-                {
-                  component: 'FlexContainer',
-                  config: { direction: 'vertical' },
-                  children: [{ component: 'Text', config: { content: 'Hello' } }],
-                },
-                {
-                  component: 'FlexContainer',
-                  config: { direction: 'vertical' },
-                  children: [{ component: 'Text', config: { content: 'Hello' } }],
-                },
-                {
-                  component: 'FlexContainer',
-                  config: { direction: 'vertical' },
-                  children: [{ component: 'Text', config: { content: 'Hello' } }],
-                },
-                {
-                  component: 'FlexContainer',
-                  config: { direction: 'vertical' },
-                  children: [{ component: 'Text', config: { content: 'Hello' } }],
-                },
-              ],
-            },
-            {
-              component: 'FlexContainer',
-              config: { direction: 'vertical', fixedNestedChildren: true },
-              children: [
-                { component: 'FlexContainer', config: { direction: 'column' } },
-                {
-                  component: 'FlexContainer',
-                  config: { direction: 'vertical' },
-                  children: [{ component: 'Text', config: { content: 'Hello' } }],
-                },
-                {
-                  component: 'FlexContainer',
-                  config: { direction: 'vertical' },
-                  children: [{ component: 'Text', config: { content: 'Hello' } }],
-                },
-                {
-                  component: 'FlexContainer',
-                  config: { direction: 'vertical' },
-                  children: [{ component: 'Text', config: { content: 'Hello' } }],
-                },
-                {
-                  component: 'FlexContainer',
-                  config: { direction: 'vertical' },
-                  children: [{ component: 'Text', config: { content: 'Hello' } }],
-                },
-                {
-                  component: 'FlexContainer',
-                  config: { direction: 'vertical' },
-                  children: [{ component: 'Text', config: { content: 'Hello' } }],
-                },
-                {
-                  component: 'FlexContainer',
-                  config: { direction: 'vertical' },
-                  children: [{ component: 'Text', config: { content: 'Hello' } }],
-                },
-              ],
-            },
+            { component: 'Text', config: { content: '中文' }, __dynamic_uid: '57' },
+            { component: 'Text', config: { content: 'Hello' }, __dynamic_uid: '51' },
+            { component: 'Text', config: { content: '中文' }, __dynamic_uid: '49' },
+            { component: 'Text', config: { content: '中文' }, __dynamic_uid: '50' },
           ],
         },
       ],
+      __dynamic_uid: '0',
     },
   ],
 }

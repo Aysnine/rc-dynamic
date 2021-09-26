@@ -1,6 +1,7 @@
 import { useContext, useMemo } from 'react'
 import { ConfigureProps } from '../../types'
 import { DynamicNodeContext } from '../core/DynamicNode'
+import { FlexContainerProps } from '../FlexContainer'
 
 import styles from './index.module.css'
 
@@ -11,10 +12,12 @@ export interface FlexContainerConfig {
 const FlexContainerConfigure: React.FC<ConfigureProps<FlexContainerConfig>> = ({ children }) => {
   const nodeContext = useContext(DynamicNodeContext)
 
-  const config = nodeContext.meta?.config as FlexContainerConfig | undefined
-  const { direction = 'vertical' } = config || {}
+  const props = useMemo<FlexContainerProps>(() => {
+    const config = nodeContext.meta?.config as FlexContainerConfig | undefined
+    const { direction = 'vertical' } = config || {}
 
-  const props = useMemo(() => nodeContext.meta?.config ?? {}, [nodeContext.meta?.config])
+    return { direction }
+  }, [nodeContext.meta?.config])
 
   return (
     <div className={styles.container}>
@@ -42,11 +45,11 @@ const FlexContainerConfigure: React.FC<ConfigureProps<FlexContainerConfig>> = ({
               className={styles.action}
               onClick={() => {
                 nodeContext.updateConfig<FlexContainerConfig>((config) => {
-                  config.direction = direction === 'horizontal' ? 'vertical' : 'horizontal'
+                  config.direction = props.direction === 'horizontal' ? 'vertical' : 'horizontal'
                 })
               }}
             >
-              dir:{direction.slice(0, 1)}
+              dir:{props.direction!.slice(0, 1)}
             </div>
           ) : null}
         </div>

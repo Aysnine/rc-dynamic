@@ -46,7 +46,7 @@ const MaterialPanel: React.FC<MaterialPanelProps> = ({ mode, setMode }) => {
         setList={() => {}}
         animation={150}
         sort={false}
-        swapThreshold={0.65}
+        swapThreshold={1}
         group={{ name: sortableGroupName, pull: 'clone', put: false }}
         className={styles.container}
         ghostClass={styles.ghost}

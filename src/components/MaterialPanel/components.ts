@@ -7,7 +7,7 @@ const components: MaterialSortableNodeMeta[] = [
     cloneRaw: () => ({
       component: 'FlexContainer',
       config: {
-        direction: 'row',
+        direction: 'vertical',
       },
     }),
   },
@@ -17,7 +17,7 @@ const components: MaterialSortableNodeMeta[] = [
     cloneRaw: () => ({
       component: 'FlexContainer',
       config: {
-        direction: 'column',
+        direction: 'horizontal',
       },
     }),
   },

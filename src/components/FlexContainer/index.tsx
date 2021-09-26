@@ -16,7 +16,7 @@ export interface SortableNodeMeta {
   raw: DynamicNodeMeta
 }
 
-interface FlexContainerProps {
+export interface FlexContainerProps {
   root?: boolean
   direction?: 'vertical' | 'horizontal'
 }
@@ -87,7 +87,7 @@ const FlexContainer: React.FC<FlexContainerProps> = ({ root = false, direction =
         setList={setList}
         tag="div"
         animation={150}
-        swapThreshold={0.65}
+        swapThreshold={1}
         group={sortableGroupName}
         className={styles.flexContainer}
         ghostClass={styles.flexItemGhost}

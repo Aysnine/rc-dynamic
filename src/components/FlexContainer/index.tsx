@@ -49,8 +49,6 @@ const FlexContainer: React.FC<FlexContainerProps> = (p) => {
     }
   }
 
-  if (nodeContext.meta?.__uid === '15') console.log('flex', fixedChildren)
-
   return (
     <div
       className={classNames(styles.container, styles[direction], {

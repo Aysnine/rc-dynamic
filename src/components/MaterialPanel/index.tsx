@@ -25,8 +25,8 @@ const MaterialPanel: React.FC<MaterialPanelProps> = ({ mode, setMode }) => {
           id: meta.__uid!,
           meta,
           clone: (): SortableNode => {
-            const meta = indexNodeMeta(i.clone())
-            return { id: meta.__uid!, meta: indexNodeMeta(i.clone()) }
+            const nestedMeta = indexNodeMeta(i.clone())
+            return { id: nestedMeta.__uid!, meta: indexNodeMeta(i.clone()) }
           },
         }
       }),

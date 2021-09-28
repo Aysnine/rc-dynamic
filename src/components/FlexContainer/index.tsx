@@ -15,7 +15,8 @@ export interface FlexContainerProps {
   fixedChildren?: boolean
 }
 
-const FlexContainer: React.FC<FlexContainerProps> = ({ direction = 'vertical', fixedChildren = false }) => {
+const FlexContainer: React.FC<FlexContainerProps> = (p) => {
+  const { direction = 'vertical', fixedChildren = false } = p
   const rootContext = useContext(DynamicRootContext)
   const nodeContext = useContext(DynamicNodeContext)
 
@@ -48,6 +49,8 @@ const FlexContainer: React.FC<FlexContainerProps> = ({ direction = 'vertical', f
     }
   }
 
+  if (nodeContext.meta?.__uid === '15') console.log('flex', fixedChildren)
+
   return (
     <div
       className={classNames(styles.container, styles[direction], {
@@ -62,7 +65,13 @@ const FlexContainer: React.FC<FlexContainerProps> = ({ direction = 'vertical', f
         setList={setList}
         animation={150}
         swapThreshold={0.5}
-        group={{ name: SortableGroup.FlexContainer, put: !fixedChildren }}
+        // ! Force refresh ReactSortable.group
+        key={String(fixedChildren)}
+        // ! ReactSortable.group not use current value
+        group={{
+          name: SortableGroup.FlexContainer,
+          put: !fixedChildren,
+        }}
         className={styles.flexContainer}
         ghostClass={ghostClass}
         clone={(item) => (item.clone ? item.clone() : item)}

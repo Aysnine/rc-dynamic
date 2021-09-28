@@ -52,6 +52,7 @@ const RootContainer: React.FC = () => {
         setList={setList}
         animation={150}
         swapThreshold={0.5}
+        // ! ReactSortable.group not use current value
         group={{ name: SortableGroup.RootContainer, put: true }}
         className={styles.rootContainer}
         ghostClass={ghostClass}

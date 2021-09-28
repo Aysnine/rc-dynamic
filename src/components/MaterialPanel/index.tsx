@@ -3,10 +3,10 @@ import classNames from 'classnames'
 import { ReactSortable } from 'react-sortablejs'
 import { DynamicMode, SortableGroup } from '../../constants'
 import { SortableNode } from '../../types'
+import { indexNodeMeta } from '../../utils'
 import presets from './presets'
 
 import styles from './index.module.css'
-import { indexNodeMeta } from 'src/utils'
 
 interface MaterialPanelProps {
   mode: DynamicMode

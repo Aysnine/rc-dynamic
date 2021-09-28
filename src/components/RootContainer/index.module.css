@@ -25,12 +25,12 @@
 /* compose */
 
 .container.creative > .rootContainer {
-  min-height: 400px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
 .container.creative.empty > .rootContainer {
-  outline: 1px dashed #2196f3;
+  outline: 1px dashed #2196f355;
+  min-height: 400px;
 }

@@ -62,7 +62,7 @@ const FlexContainer: React.FC<FlexContainerProps> = ({ direction = 'vertical', f
         setList={setList}
         animation={150}
         swapThreshold={0.5}
-        group={{ name: SortableGroup.FlexContainer, put: true }}
+        group={{ name: SortableGroup.FlexContainer, put: !fixedChildren }}
         className={styles.flexContainer}
         ghostClass={ghostClass}
         clone={(item) => (item.clone ? item.clone() : item)}

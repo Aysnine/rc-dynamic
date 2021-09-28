@@ -50,7 +50,6 @@ const DynamicNode: React.FC<DynamicNodeProps> = ({ meta, index, children }) => {
   const remove = () => {
     rootContext.updateMeta?.((rootMeta) => {
       const parentMeta = findParentMeta(rootMeta, indexPath) || rootMeta
-      console.log(parentMeta, indexPath)
 
       if (parentMeta?.children) {
         parentMeta.children = parentMeta.children.filter((i) => i.__uid !== meta.__uid)

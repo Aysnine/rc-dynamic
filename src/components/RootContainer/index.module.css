@@ -28,6 +28,7 @@
   min-height: 400px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .container.creative.empty > .rootContainer {

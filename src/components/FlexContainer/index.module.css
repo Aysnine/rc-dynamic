@@ -1,92 +1,39 @@
 .container {
-  /* NOTING */
+  /* NOTHING */
+}
+
+.empty {
+  /* NOTHING */
+}
+
+.creative {
+  /* NOTHING */
+}
+
+.fixed {
+  /* NOTHING */
+}
+
+.flexItemHandle {
+  /* NOTHING */
 }
 
 .flexContainer {
   display: flex;
 }
-
-.horizontal > .flexContainer {
-  flex-direction: row;
-}
-
-.vertical > .flexContainer {
-  flex-direction: column;
-}
+.horizontal > .flexContainer { flex-direction: row; }
+.vertical > .flexContainer { flex-direction: column; }
 
 .flexItem {
   flex: 1;
-  position: relative;
-
-  /* effect */
-  outline-offset: -1px;
-  outline: 0 dashed transparent;
-  transition-property: outline, padding, margin;
-  transition-duration: .28s;
 }
 
-.root > .flexContainer > .flexItem {
-  flex: unset;
+.flexItemHandle {
+  /* NOTHING */
 }
 
-.flexItemGhost,
-:global(.sortable-chosen) {
-  user-select: none;
-  background-color: #e6f4fa;
+/* compose */
 
-  /* effect */
-  transition: background-color .28s;
-}
-
-.nestedItemContainer {
-  /* NOTING */
-}
-
-.handle {
-  /* NOTING */
-}
-
-.editMode.root > .flexContainer {
-  min-height: 300px;
-  overflow: hidden;
-}
-
-.editMode.root.empty {
-  outline: 1px dashed #2196f3;
-}
-
-.editMode.container {
-  height: 100%;
-}
-
-.editMode > .flexContainer {
-  min-height: 100%;
-}
-
-.editMode > .flexContainer > .flexItem {
-  padding: 5px;
-  margin: 5px;
-
-  outline: 1px solid #2196f3;
-}
-
-.editMode > .flexContainer > .nestedItemContainer {
-  outline-style: dashed;
-  min-height: 15px;
-  min-width: 15px;
-}
-
-.editMode > .flexContainer > .active {
-  background-color: #e6e6fa;
-  outline-color: #ab47bc;
-}
-
-.editMode > .flexContainer > .nestedFixedItemContainer {
-  padding: 0;
-  margin: 0;
-  outline: none;
-}
-
-.editMode.fixed > .flexContainer > .flexItem {
-  outline-color: #2196f355;
+.container.creative > .flexContainer {
+  min-height: 50px;
 }

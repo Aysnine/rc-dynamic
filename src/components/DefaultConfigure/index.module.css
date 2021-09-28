@@ -1,12 +1,7 @@
-.container {
-  position: relative;
-  height: 100%;
-}
-
 .configure {
   position: absolute;
-  top: -5px;
-  right: -5px;
+  top: 0;
+  right: 0;
   height: 16px;
   min-width: 16px;
 }

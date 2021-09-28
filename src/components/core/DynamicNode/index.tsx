@@ -1,13 +1,12 @@
-import { createContext, useContext } from 'react'
-import { findCurrentMeta, findParentMeta, indexNodeMeta } from '../../../utils'
+import { createContext, useContext, useMemo } from 'react'
+import { cloneNodeMeta, findCurrentMeta, findParentMeta } from '../../../utils'
 import { componentMap, configureMap, defaultConfigure } from '../../../constants'
-import { DynamicNodeMeta } from '../../../types'
-import DynamicChildren from '../DynamicChildren'
+import { ConfigureProps, DynamicNodeMeta } from '../../../types'
 import { DynamicRootContext } from '../DynamicRoot'
 
 export interface DynamicNodeProps {
   meta: DynamicNodeMeta
-  indexPath: number[]
+  index: number
 }
 
 export const DynamicNodeContext = createContext<{
@@ -18,7 +17,9 @@ export const DynamicNodeContext = createContext<{
   remove: () => void
   repeat: () => void
   updateConfig: <Config>(callback: (config: Config) => void) => void
-  getParentMeta: () => DynamicNodeMeta | undefined
+  parentMeta: DynamicNodeMeta | undefined
+  Component: React.FC<any>
+  Configure: React.FC<ConfigureProps<any>>
 }>({
   indexPath: [],
   isActive: false,
@@ -26,37 +27,45 @@ export const DynamicNodeContext = createContext<{
   remove: () => {},
   repeat: () => {},
   updateConfig: () => {},
-  getParentMeta: () => undefined,
+  parentMeta: undefined,
+  Component: () => null,
+  Configure: () => null,
 })
 
-const DynamicNode: React.FC<DynamicNodeProps> = ({ meta, indexPath }) => {
+const DynamicNode: React.FC<DynamicNodeProps> = ({ meta, index, children }) => {
   const rootContext = useContext(DynamicRootContext)
+  const parentNodeContext = useContext(DynamicNodeContext)
 
-  const { component, children } = meta
+  const { component } = meta
+  const { meta: parentMeta } = parentNodeContext
 
   const Component = componentMap[component] as any
-  const ComponentConfigure = configureMap[component] ?? defaultConfigure
+  const Configure = configureMap[component] ?? defaultConfigure
 
-  const isActive = rootContext.activeId === meta.__dynamic_uid
-  const setActive = (value: boolean) => rootContext.setActiveId(value ? meta.__dynamic_uid! : null)
+  const indexPath = useMemo(() => [...parentNodeContext.indexPath, index], [index, parentNodeContext.indexPath])
+
+  const isActive = rootContext.activeId === meta.__uid
+  const setActive = (value: boolean) => rootContext.setActiveId(value ? meta.__uid! : null)
 
   const remove = () => {
     rootContext.updateMeta?.((rootMeta) => {
-      const parentMeta = findParentMeta(rootMeta, indexPath)
+      const parentMeta = findParentMeta(rootMeta, indexPath) || rootMeta
+      console.log(parentMeta, indexPath)
+
       if (parentMeta?.children) {
-        parentMeta.children = parentMeta.children.filter((i) => i.__dynamic_uid !== meta.__dynamic_uid)
+        parentMeta.children = parentMeta.children.filter((i) => i.__uid !== meta.__uid)
       }
     })
   }
 
   const repeat = () => {
     rootContext.updateMeta?.((rootMeta) => {
-      const parentMeta = findParentMeta(rootMeta, indexPath)
+      const parentMeta = findParentMeta(rootMeta, indexPath) || rootMeta
       if (parentMeta?.children) {
-        const currentIndex = parentMeta?.children.findIndex((i) => i.__dynamic_uid === meta.__dynamic_uid)
+        const currentIndex = parentMeta?.children.findIndex((i) => i.__uid === meta.__uid)
         const currentNodeMeta = parentMeta.children[currentIndex]
         if (currentIndex > -1) {
-          parentMeta?.children.splice(currentIndex + 1, 0, indexNodeMeta(currentNodeMeta))
+          parentMeta?.children.splice(currentIndex + 1, 0, cloneNodeMeta(currentNodeMeta))
         }
       }
     })
@@ -74,19 +83,22 @@ const DynamicNode: React.FC<DynamicNodeProps> = ({ meta, indexPath }) => {
     })
   }
 
-  const getParentMeta = (): DynamicNodeMeta | undefined => {
-    return findParentMeta(rootContext.meta!, indexPath)
-  }
-
   return (
     <DynamicNodeContext.Provider
-      value={{ meta, indexPath, isActive, setActive, remove, repeat, updateConfig, getParentMeta }}
+      value={{
+        meta,
+        indexPath,
+        isActive,
+        setActive,
+        remove,
+        repeat,
+        updateConfig,
+        parentMeta,
+        Component,
+        Configure,
+      }}
     >
-      <ComponentConfigure>
-        {(props: unknown) => (
-          <Component {...props}>{children?.length ? <DynamicChildren children={children} /> : null}</Component>
-        )}
-      </ComponentConfigure>
+      {children}
     </DynamicNodeContext.Provider>
   )
 }

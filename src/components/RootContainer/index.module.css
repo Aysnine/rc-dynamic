@@ -1,0 +1,35 @@
+.container {
+  position: relative;
+}
+
+.empty {
+  /* NOTHING */
+}
+
+.creative {
+  /* NOTHING */
+}
+
+.rootItemHandle {
+  /* NOTHING */
+}
+
+.rootContainer {
+  position: relative;
+}
+
+.rootItemHandle {
+  /* NOTHING */
+}
+
+/* compose */
+
+.container.creative > .rootContainer {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container.creative.empty > .rootContainer {
+  outline: 1px dashed #2196f3;
+}

@@ -8,14 +8,21 @@ export const uid = (() => {
 export const indexChildrenMeta = (children?: DynamicNodeMeta[]): DynamicNodeMeta[] | undefined =>
   children?.map((child) => ({
     ...child,
-    __dynamic_uid: uid(),
+    __uid: uid(),
     children: indexChildrenMeta(child.children),
   }))
 
 export const indexNodeMeta = (nodeMeta: DynamicNodeMeta): DynamicNodeMeta =>
   [nodeMeta].map((child) => ({
     ...child,
-    __dynamic_uid: uid(),
+    __uid: uid(),
+    children: indexChildrenMeta(child.children),
+  }))[0]
+
+export const cloneNodeMeta = (nodeMeta: DynamicNodeMeta): DynamicNodeMeta =>
+  [JSON.parse(JSON.stringify(nodeMeta))].map((child) => ({
+    ...child,
+    __uid: uid(),
     children: indexChildrenMeta(child.children),
   }))[0]
 
@@ -46,6 +53,10 @@ export const findParentMeta = (rootMeta: DynamicRootMeta, indexPath: number[]): 
   return last
 }
 
-export const hashChildren = (children: DynamicNodeMeta[] = []) => {
-  return children.map((i) => i.__dynamic_uid).join('__')
+export const hashChildrenIds = (children: DynamicNodeMeta[] = []) => {
+  return children.map((i) => i.__uid).join('__')
+}
+
+export const equalChildrenIds = (A: DynamicNodeMeta[] = [], B: DynamicNodeMeta[] = []) => {
+  return hashChildrenIds(A) === hashChildrenIds(B)
 }

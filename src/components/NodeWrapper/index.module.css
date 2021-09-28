@@ -1,0 +1,65 @@
+.container {
+  position: relative;
+
+  /* effect */
+  outline-offset: -1px;
+  outline: 0 dashed transparent;
+  transition-property: outline, padding, margin;
+  transition-duration: .28s;
+}
+
+.creative {
+  /* NOTHING */
+}
+
+.active {
+  /* NOTHING */
+}
+
+.ghost {
+  /*  */
+}
+
+.nested {
+  /* NOTHING */
+}
+
+.fixed {
+  /* NOTHING */
+}
+
+/* compose */
+
+.ghost,
+:global(.sortable-chosen) {
+  user-select: none;
+  background-color: #e6f4fa;
+
+  /* effect */
+  transition: background-color .28s;
+}
+
+.container.creative {
+  padding: 5px;
+  margin: 5px;
+  outline: 1px solid #2196f3;
+}
+
+.container.creative.nested {
+  outline-style: dashed;
+}
+
+.container.creative.active {
+  background-color: #e6e6fa;
+  outline-color: #ab47bc;
+}
+
+.container.creative.fixed {
+  padding: 0;
+  margin: 0;
+  outline-style: none;
+}
+
+.container.creative.parentFixed {
+  outline-color: #2196f355;
+}

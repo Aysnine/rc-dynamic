@@ -7,7 +7,7 @@ export interface DynamicNodeMeta<Config = any> {
   component: ComponentName
   config?: Config
   children?: DynamicNodeMeta[]
-  __dynamic_uid?: string
+  __uid?: string
 }
 
 export interface DynamicRootMeta {
@@ -16,5 +16,11 @@ export interface DynamicRootMeta {
 }
 
 export interface ConfigureProps<ChildrenProps> {
-  children: (props: ChildrenProps) => ReactNode
+  children: (props: ChildrenProps, configureNode: ReactNode) => ReactNode
+}
+
+export interface SortableNode {
+  id: string
+  meta: DynamicNodeMeta
+  clone?: () => SortableNode
 }

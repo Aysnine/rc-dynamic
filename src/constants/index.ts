@@ -1,6 +1,7 @@
 import React from 'react'
 import { ConfigureProps } from '../types'
 
+import RootContainer from '../components/RootContainer'
 import FlexContainer from '../components/FlexContainer'
 import Text from '../components/Text'
 
@@ -12,7 +13,14 @@ export enum DynamicMode {
   CREATIVE = 'CREATIVE',
 }
 
+export enum SortableGroup {
+  MaterialPanel = 'MaterialPanel',
+  FlexContainer = 'FlexContainer',
+  RootContainer = 'RootContainer',
+}
+
 export const componentMap = {
+  RootContainer,
   FlexContainer,
   Text,
 }

@@ -1,13 +1,13 @@
 import produce from 'immer'
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, ReactNode, useEffect, useState } from 'react'
 import { DynamicRootMeta } from '../../../types'
-import DynamicChildren from '../DynamicChildren'
 import { DynamicMode } from '../../../constants'
 
 export interface DynamicRootProps {
   value: DynamicRootMeta
   onChange: (value: DynamicRootMeta) => void
   mode: DynamicMode
+  children: ReactNode
 }
 
 export const DynamicRootContext = createContext<{
@@ -22,11 +22,10 @@ export const DynamicRootContext = createContext<{
   setActiveId: () => {},
 })
 
-const DynamicRoot: React.FC<DynamicRootProps> = ({ value, onChange, mode }) => {
+const DynamicRoot: React.FC<DynamicRootProps> = ({ value, onChange, mode, children }) => {
   const meta = value
 
   const [activeId, setActiveId] = useState<string | null>(null)
-  // const [activeId, setActiveId] = useState<string | null>('4') // ! DEBUG
 
   useEffect(() => {
     if (mode === DynamicMode.SURVIVAL) {
@@ -44,7 +43,7 @@ const DynamicRoot: React.FC<DynamicRootProps> = ({ value, onChange, mode }) => {
 
   return (
     <DynamicRootContext.Provider value={{ meta, updateMeta, mode, activeId, setActiveId }}>
-      {meta.children ? <DynamicChildren children={meta.children} /> : null}
+      {children}
     </DynamicRootContext.Provider>
   )
 }

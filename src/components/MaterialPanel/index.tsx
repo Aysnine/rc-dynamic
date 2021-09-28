@@ -1,21 +1,12 @@
 import { useMemo } from 'react'
 import classNames from 'classnames'
 import { ReactSortable } from 'react-sortablejs'
-import { DynamicMode } from '../../constants'
-import { DynamicNodeMeta } from '../../types'
-import { sortableGroupName, SortableNodeMeta } from '../FlexContainer'
-import components from './components'
+import { DynamicMode, SortableGroup } from '../../constants'
+import { SortableNode } from '../../types'
+import presets from './presets'
 
 import styles from './index.module.css'
-
-export interface MaterialSortableNodeMeta extends Omit<SortableNodeMeta, 'raw'> {
-  label: string
-  cloneRaw: () => DynamicNodeMeta
-}
-
-export const isMaterialSortableNodeMeta = (meta: unknown): meta is MaterialSortableNodeMeta => {
-  return typeof (meta as MaterialSortableNodeMeta).cloneRaw === 'function'
-}
+import { indexNodeMeta } from 'src/utils'
 
 interface MaterialPanelProps {
   mode: DynamicMode
@@ -25,6 +16,22 @@ interface MaterialPanelProps {
 const MaterialPanel: React.FC<MaterialPanelProps> = ({ mode, setMode }) => {
   // * for control draggable
   const handleClassName = useMemo(() => (mode === DynamicMode.CREATIVE ? styles.handle : ''), [mode])
+
+  const list: SortableNode[] = useMemo(
+    () =>
+      presets.map((i) => {
+        const meta = indexNodeMeta(i.clone())
+        return {
+          id: meta.__uid!,
+          meta,
+          clone: (): SortableNode => {
+            const meta = indexNodeMeta(i.clone())
+            return { id: meta.__uid!, meta: indexNodeMeta(i.clone()) }
+          },
+        }
+      }),
+    []
+  )
 
   return (
     <div>
@@ -41,20 +48,18 @@ const MaterialPanel: React.FC<MaterialPanelProps> = ({ mode, setMode }) => {
         )}
       </div>
       <div className={styles.divider}></div>
-      <ReactSortable<MaterialSortableNodeMeta>
-        list={components}
+      <ReactSortable<SortableNode>
+        list={list}
         setList={() => {}}
         animation={150}
         sort={false}
         swapThreshold={1}
-        group={{ name: sortableGroupName, pull: 'clone', put: false }}
+        group={{ name: SortableGroup.MaterialPanel, pull: 'clone', put: false }}
         className={styles.container}
-        ghostClass={styles.ghost}
         handle={'.' + handleClassName}
-        tag="div"
       >
-        {components.map((i) => (
-          <div key={i.id} className={classNames(styles.item, handleClassName)}>
+        {presets.map((i) => (
+          <div key={i.label} className={classNames(styles.item, handleClassName)}>
             {i.label}
           </div>
         ))}

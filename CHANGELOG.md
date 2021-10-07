@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-0](https://github.com/Aysnine/rc-dynamic/compare/v0.0.7...v1.0.0-0) (2021-10-07)
+
+
+### Features
+
+* click to active ([e1b89dd](https://github.com/Aysnine/rc-dynamic/commit/e1b89dde7aef90540bf3a15f0b993adc49ece243))
+* fixed mode ([8f47d8a](https://github.com/Aysnine/rc-dynamic/commit/8f47d8af04608a6143b5bae55f9323aa4db6a013))
+
+
+### Bug Fixes
+
+* config FlexContainer ([2246152](https://github.com/Aysnine/rc-dynamic/commit/2246152718e7c31eea8545cd1fcb0cb06890346d))
+* props bug ([fa7b9d1](https://github.com/Aysnine/rc-dynamic/commit/fa7b9d109f6acb4bf214d7ada981b4803a119bda))
+
 ### [0.0.7](https://github.com/Aysnine/rc-dynamic/compare/v0.0.6...v0.0.7) (2021-02-08)
 
 

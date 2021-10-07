@@ -28,14 +28,6 @@ jobs:
         name: dist
         path: dist/
 
-    - name: Build storybook
-      run: yarn build-storybook
-
-    - uses: actions/upload-artifact@v2
-      with:
-        name: storybook-static
-        path: storybook-static/
-
   deploy-dist-to-ftp:
     needs: check-quality-and-build
     runs-on: ubuntu-latest
@@ -57,27 +49,4 @@ jobs:
         PORT: ${{ secrets.FTP_PORT }}
         LOCAL_DIR: dist
         REMOTE_DIR: /www/rc-dynamic/preview
-        ARGS: --delete --verbose --parallel=100
-
-  deploy-storybook-to-ftp:
-    needs: check-quality-and-build
-    runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.message, 'chore(release)')
-    name: Deploy storybook to FTP
-    steps:
-    - uses: actions/download-artifact@v2
-      with:
-        name: storybook-static
-        path: storybook-static/
-
-    - name: Deploy to ftp
-      uses: SamKirkland/FTP-Deploy-Action@2.0.0
-      env:
-        FTP_SERVER: ${{ secrets.FTP_SERVER }}
-        FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-        FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-        METHOD: sftp
-        PORT: ${{ secrets.FTP_PORT }}
-        LOCAL_DIR: storybook-static
-        REMOTE_DIR: /www/rc-dynamic/storybook
         ARGS: --delete --verbose --parallel=100

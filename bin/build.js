@@ -10,7 +10,7 @@ process.on('unhandledRejection', (error) => {
 })
 ;(async () => {
   // Copy public assets
-  fs.rmdirSync('dist', { recursive: true })
+  fs.rmSync('dist', { recursive: true, force: true })
   fs.mkdirSync('dist')
   fs.copyFileSync('public/index.html', 'dist/index.html') // TODO support multiple files
 

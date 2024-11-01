@@ -2,7 +2,7 @@
 
 React component Drag and Drop and Config Driven UI demo.
 
-Preview here 👉 https://d2.pub/rc-dynamic/preview/
+Preview here 👉 https://rc-dynamic.pages.dev
 
 ## Main integrations
 
